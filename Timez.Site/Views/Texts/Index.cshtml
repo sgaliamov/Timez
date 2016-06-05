@@ -1,0 +1,11 @@
+﻿@model IText
+@{
+	ViewBag.Title = Model.Title;
+}
+@section TopLine
+{
+	<h1 class="narrow-page">@Model.Title</h1>
+}
+<div class="narrow-page">
+	@Html.Partial("Text")
+</div>

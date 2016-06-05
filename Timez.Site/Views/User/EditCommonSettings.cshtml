@@ -1,0 +1,31 @@
+﻿@model IUser
+@using (Ajax.BeginForm("EditCommonSettings", new CommonAjaxOptions("EditCommonSettings")))
+{
+	<p>
+		@Html.LabelFor(m => m.Nick)
+		@Html.TextBoxFor(m => m.Nick)
+	</p>
+	<p>
+		<label for="timezone">
+			Временная зона
+		</label>
+		@Html.DropDownList("timezones")
+	</p>
+	<p>
+		@Html.LabelFor(m => m.EMail)
+		@Html.TextBoxFor(m => m.EMail, new { @class = "email" })
+		@if (Model.EmailChangeDate.HasValue)
+  {
+			<span class="validation-summary-errors">Имейл не подтвержден, проверьте почтовый ящик.</span>
+			@Ajax.ActionLink("Выслать подтверждение повторно", "ReconfirmEmail", new CommonAjaxOptions())
+  }
+	</p>
+	<p>
+		@Html.CheckBox("RecievOwnEvents", Model.RecievOwnEvents)
+		@Html.Label("RecievOwnEvents", "Получать сообщения на свои действия на досках")
+	</p>
+	<center>
+        <input type="submit" value="Сохранить" />
+    </center>
+	@Html.ValidationSummary()    
+}

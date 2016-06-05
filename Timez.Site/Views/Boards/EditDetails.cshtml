@@ -1,0 +1,56 @@
+﻿@model IBoard
+@using (Html.BeginForm())
+{
+	bool editOrganization = ViewData.Get<bool>("EditOrganization");
+	if (editOrganization)
+	{
+	<p>
+		@Html.LabelFor(m => m.OrganizationId)
+		@Html.DropDownList("OrganizationId",
+								 new SelectList(ViewData.GetCollection<IOrganization>("organizations"), "Id", "Name", ViewData["OrganizationId"]),
+								 "Личная доска")
+	</p>
+	}
+	else
+	{
+		IOrganization organization = ViewData.Get<IOrganization>("Organization");
+	@Html.LabelFor(m => m.OrganizationId)<text>:&nbsp;</text>
+	@organization.Name
+	@Html.HiddenFor(m => m.OrganizationId)
+	}
+	<p>
+		@Html.LabelFor(m => m.Name)
+		@Html.TextBoxFor(model => model.Name, new { @class = "focused" })
+		@Html.ValidationMessageFor(model => model.Name)
+	</p>
+	<p>
+		@Html.LabelFor(m => m.Description)
+		@Html.TextAreaFor(model => model.Description,
+	new
+	{
+		rows = 10,
+		@class = "autogrow"
+	})
+	</p>
+	<p>
+		Автоматически обновлять каждые @Html.TextBoxFor(m => m.RefreshPeriod, new { style = "display:inline; width:40px;", maxlength = 4 })
+		минут.<br />
+		@Html.ValidationMessageFor(model => model.RefreshPeriod)
+	</p>
+	<div class="buttons">
+		@if (Model != null)
+  {
+			@Html.ActionLink("Удалить доску", "Delete",
+				new { id = Model.Id },
+				new
+				{
+					@class = "button left red",
+					title = "Удалить",
+					onclick = "return window.confirm('Вы уверены, что хотите удалить доску? Будут удалены все проекты и задачи на ней!');"
+				})
+  }
+		<input type="submit" value="@Html.Raw(Model != null ? "Сохранить" : "Создать")" />
+		@Html.ActionLink("Отмена", "Index", null, new { @class = "button" })
+	</div>
+	@Html.Partial("ValidationSummary");
+}

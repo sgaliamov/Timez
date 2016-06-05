@@ -1,0 +1,58 @@
+﻿@model List<IBoard>
+@if (Model == null || Model.Count() > 0)
+{
+	IEnumerable<IOrganization> organizations = ViewData.GetCollection<IOrganization>("organizations");
+	<table class="table">
+		<tr>
+			<th style="text-align: left">
+				Доска
+			</th>
+			<th style="text-align: right">
+				Организация
+			</th>
+			<th class="button">
+			</th>
+			<th class="button">
+			</th>
+		</tr>
+		@foreach (IBoard item in Model)
+  {
+	  IOrganization organization = null;
+	  if (item.OrganizationId.HasValue)
+	  {
+		  // Если огранизация указана у доски, то пользователь должен состоять в ней
+		  // Если пользователь не состоит в огранизации доски, то он не должен иметь доступа к ней.
+		  organization = organizations.First(x => x.Id == item.OrganizationId);
+	  }
+			<tr>
+				<td style="text-align: left">
+					@Html.ActionLink(item.Name, "Index", "Kanban", new { id = item.Id }, null)
+				</td>
+				<td style="text-align: right">
+					@if (organization != null)
+	 {
+						@Html.ActionLink(organization.Name, "Index", "Organization", new { id = organization.Id }, null)
+	 }
+	 else
+	 { 
+						<i>Личная доска</i>
+	 }
+				</td>
+				<td>
+					<span class="circle-button">
+						@Html.ActionLink("Настройки", "Edit", "Boards", new { id = item.Id }, new { @class = "ui-icon ui-icon-wrench", title = "Настройки" })
+					</span>
+				</td>
+				<td>
+					<span class="circle-button">
+						@Html.ActionLink("?", "Details", "Boards", new { id = item.Id }, new { @class = "ui-icon ui-icon-help", title = "Описание" })
+					</span>
+				</td>
+			</tr>
+  }
+	</table>
+}
+else
+{
+	Response.Write("<i>Досок нет.</i>");
+}

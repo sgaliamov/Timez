@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  This file contains basic settings needed for most web apps.
+  For full Combres settings (with explanation), refer to the sample definition file: combres_full_with_annotation.xml
+  Also, refer to Combres' documentation: http://combres.codeplex.com/documentation	
+-->
+<combres xmlns='urn:combres'>
+	<filters>
+		<filter type="Combres.Filters.FixUrlsInCssFilter, Combres" />
+	</filters>
+	<resourceSets url="~/combres.axd"
+                  defaultDuration="30"
+                  defaultVersion="auto"
+                  defaultDebugEnabled="false"
+                  defaultIgnorePipelineWhenDebug="true"
+                  localChangeMonitorInterval="30"
+                  remoteChangeMonitorInterval="60">
+		<resourceSet name="siteCss" type="css">
+			<resource path="~/Content/jquery-ui-1.8.2.custom.css" />
+			<resource path="~/jQuery/dropdown-check-list/ui.dropdownchecklist.standalone.css" />
+			<resource path="~/jQuery/jquery.contextMenu/jquery.contextMenu.css" />
+			<resource path="~/jQuery/colorpicker/css/colorpicker.css" />
+			<resource path="~/Content/Site.css" />
+		</resourceSet>
+		<resourceSet name="siteJs" type="js" debugEnabled="true">
+			<!--<resource path="~/Scripts/MS/MicrosoftAjax.js" minifierRef="off" />
+			<resource path="~/Scripts/MS/MicrosoftMvcAjax.js" minifierRef="off" />-->
+			<resource path="~/jQuery/jquery-1.5.1.js" minifierRef="off" />
+			<resource path="~/jQuery/jquery-ui-1.8.16.custom.min.js" minifierRef="off" />
+			<resource path="~/jQuery/jquery.unobtrusive-ajax.min.js" minifierRef="off" />
+			<resource path="~/jQuery/jquery-validate/jquery.validate.min.js" minifierRef="off" />
+			<resource path="~/jQuery/jquery-validate/jquery.validate.unobtrusive.min.js" minifierRef="off" />
+			<!--<resource path="~/Scripts/MS/MicrosoftMvcValidation.js" minifierRef="off" />-->
+			<resource path="~/jQuery/jquery.cookie.js" />
+			<resource path="~/jQuery/jquery.autogrow.js" />
+			<resource path="~/Scripts/AjaxLoader.js" />
+			<resource path="~/jQuery/dropdown-check-list/ui.dropdownchecklist-1.1-min.js" minifierRef="off"/>
+			<resource path="~/Scripts/Main.js" />
+		</resourceSet>
+		<resourceSet name="kanbanJs" type="js" debugEnabled="true">
+			<resource path="~/jQuery/jquery.contextMenu/jquery.contextMenu.js" />
+			<resource path="~/Scripts/Kanban.TaskBehaviours.js" />
+			<resource path="~/Scripts/Kanban.Filter.js" />
+			<resource path="~/Scripts/Kanban.js" />
+			<resource path="~/Scripts/Kanban.OnError.js" />
+			<resource path="~/Scripts/Kanban.TaskPopup.js" />
+		</resourceSet>
+		<resourceSet name="kanbanFilterJs" type="js" debugEnabled="true">
+			<resource path="~/Scripts/Kanban.Filter.js" />
+		</resourceSet>
+		<resourceSet name="kanbanLiteJs" type="js" debugEnabled="true">
+			<resource path="~/Scripts/Kanban.js" />
+			<resource path="~/Scripts/Kanban.OnError.js" />
+		</resourceSet>
+		<resourceSet name="TasksDetails" type="js">
+			<resource path="~/jQuery/jquery.MultiFile.js" />
+		</resourceSet>
+		<resourceSet name="BoardsEdit" type="js">
+			<resource path="~/jQuery/jquery.tablednd_0_5.js" />
+			<resource path="~/jQuery/colorpicker/js/colorpicker.js" />
+			<resource path="~/jQuery/jquery-validate/jquery.validate.unobtrusive.min.js" minifierRef="off" />
+		</resourceSet>
+	</resourceSets>
+</combres>

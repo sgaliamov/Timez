@@ -1,0 +1,57 @@
+﻿@model Pager
+@{
+	int count = (Model.TotalItems / Model.ItemsOnPage) + (Model.TotalItems % Model.ItemsOnPage == 0 ? 0 : 1);
+
+	if (count < 2)
+	{
+		// Не выводим пейджер, если страниц нет или всего одна
+		return;
+	}
+}
+<div class="pager" @(string.IsNullOrEmpty(Model.Id) ? "" : "id='" + Model.Id + "'")>
+	<span>Страница:</span>
+	@if (Model.PageIndex > 1 && Model.NeedArrows)
+ {
+		<b class="arrow" data-page="@(Model.PageIndex - 1)">◄</b>
+ }
+	@{
+		int start = Model.PageIndex - 1;
+		if (start <= 0)
+		{
+			start = 1;
+		}
+
+		int end = Model.PageIndex + 1;
+		if (end > count)
+		{
+			end = count;
+		}
+
+		if (start > 1)
+		{
+		<b data-page="1">1</b>
+			if (start > 2)
+			{
+		<b title="@((start + 1) / 2)" data-page="@((start + 1) / 2)">…</b>
+			}
+
+		}
+		for (int p = start; p <= end; p++)
+		{
+		<b data-page="@p" @(p == Model.PageIndex ? "class='selected'" : "")>@p</b>
+		}
+		if (end < count)
+		{
+			if (end < (count - 1))
+			{
+		<b title="@((count + end) / 2)" data-page="@((count + end) / 2)">…</b>
+			}
+		<b data-page="@count">
+			@count</b>
+		}
+		if (Model.PageIndex < count && Model.NeedArrows)
+		{
+		<b class="arrow" data-page="@(Model.PageIndex + 1)">►</b>
+		}
+	}
+</div>

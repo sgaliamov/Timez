@@ -1,0 +1,49 @@
+﻿@{
+	var statuses = ViewData.GetCollection<ITasksStatus>("Statuses");
+	statuses = statuses.Reverse();
+
+	var colors = ViewData.GetCollection<IBoardsColor>("Colors");
+	var users = ViewData.GetCollection<IUser>("users");
+	var projects = ViewData.GetCollection<IProject>("Projects");
+}
+<ul id="taskMenu" class="contextMenu">
+	<li class="to-status"><a href="#toRight">Дальше</a></li>
+	<li class="to-status separator separator-bottom"><a href="#toArchive">В архив</a></li>
+	@foreach (var item in statuses)
+ {
+		<li class="to-status"><a href="#toStatus" val="@item.Id">
+			@item.Name</a></li>
+ }
+	<li class="separator"><a href="#edit" class="edit">Редактировать</a></li>
+	<li class="separator"><a href="#details" class="">Подробно</a></li>
+	<li class="separator"><a href='#' class="has-childs">Приоритет</a>
+		<ul class="contextMenu">
+			@foreach (var item in colors)
+   { 
+				<li class="color">
+					<div class="colorSelector">
+						<div style="background-color: @item.Color">
+						</div>
+					</div>
+					<a href="#setColor" val="@item.Id">@item.Name</a></li>
+   }
+		</ul>
+	</li>
+	<li><a href='#' class="has-childs">Исполнитель</a>
+		<ul class="contextMenu">
+			@foreach (var item in users)
+   {
+				<li><a href="#setUser" val="@item.Id">@item.Nick</a></li>
+   }
+		</ul>
+	</li>
+	<li><a href='#' class="has-childs">Проект</a>
+		<ul class="contextMenu">
+			@foreach (var item in projects)
+   {
+				<li><a href="#setProject" val="@item.Id">@item.Name</a></li>
+   }
+		</ul>
+	</li>
+	<li class="separator"><a class="delete" href="#delete">Удалить</a></li>
+</ul>

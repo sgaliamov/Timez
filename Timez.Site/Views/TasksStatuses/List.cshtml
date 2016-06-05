@@ -1,0 +1,102 @@
+﻿@using Timez.Helpers;
+@model IEnumerable<ITasksStatus>
+@{int boardId = ViewContext.GetCurrentBoardId().Value;}
+<table class="table">
+	<thead>
+		<tr>
+			<th style="text-align: left;">
+				Название
+			</th>
+			<th title="Сортировать" class="button">
+			</th>
+			<th class="button">
+			</th>
+			<th class="button">
+			</th>
+			<th title="Удалить" class="button">
+			</th>
+		</tr>
+	</thead>
+	@foreach (var item in Model)
+ {
+	 bool isBacklog = item.IsBacklog;
+	 string classDrag = isBacklog ? "" : "class='dragHandle'";
+	 string classTR = isBacklog ? "class='nodrop nodrag'" : "";
+	 string id = "status_" + item.Id.ToString(); // для сортировки
+		<tr id="@id" @Html.Raw(classTR)>
+			<td style="text-align: left;">
+				@item.Name
+			</td>
+			<td @Html.Raw(classDrag)>
+			</td>
+			<td>
+				<button type="button" class="status-archive circle-button" title="Архивировать задачи" board-id="@item.BoardId" status-id="@item.Id">
+					<span class="ui-icon ui-icon-disk"></span>
+				</button>
+			</td>
+			<td>
+				<button type="button" class="status-edit circle-button" board-id="@item.BoardId" status-id="@item.Id">
+					<span class="ui-icon ui-icon-wrench"></span>
+				</button>
+			</td>
+			<td>
+				@if (!isBacklog)
+	{
+					<span class="circle-button">
+						@Ajax.ActionLink("X", "Delete",
+								new { id = item.Id, boardId = item.BoardId },
+								new CommonAjaxOptions("StatusesTable") { Confirm = "Вы уверены что хотите удалить статус? Все связанные задачи будут перенесены в беклог." },
+								new { @class = "ui-icon ui-icon-trash red delete-status" })</span>
+	}
+			</td>
+		</tr>
+ }
+</table>
+<p class="buttons">
+	<input type="button" class="status-edit" value="Добавить новый статус" board-id="@boardId" />
+</p>
+<script type="text/javascript">    
+    $(function () {       
+		$(".status-edit").click(function () {
+			var button = $(this);
+			var data = {
+				boardId: button.attr("board-id"),
+				id: button.attr("status-id")
+			};
+			Main.LoadDialog("Редактирование статуса",  '@Url.Action("Edit", "TasksStatuses")', data, true, {width:505});
+		});
+    	
+
+		$(".status-archive").click(function () {
+			if(confirm("Уверены, что хотите архивировать задачи статуса?")) {
+				var button = $(this);
+				var data = {
+					boardId: button.attr("board-id"),
+					id: button.attr("status-id")
+				};
+				AjaxLoader.Show();
+				$.post('@Url.Action("Archive", "TasksStatuses")', data, function(data, textStatus, jqXHR) {
+					if (jqXHR && jqXHR.responseText) {
+						window.Main.Message("Ошибка", jqXHR.responseText);
+					}
+					AjaxLoader.Dispose();
+				});
+			}
+		});
+
+		// Сортировка статусов
+		$("#StatusesTable tbody").tableDnD({
+			onDrop: function (sender, row) {
+				var order = $(sender).tableDnDSerialize();
+				AjaxLoader.Show();
+				$.post('@Url.Action("List", "TasksStatuses")', { id: @boardId, StatuesOrder: order }, function(){
+					AjaxLoader.Dispose();
+				});
+			},
+			dragHandle: "dragHandle"
+		});
+
+		$("#NameStatusName").focus().val('');
+		AjaxLoader.Dispose();
+    });
+</script>

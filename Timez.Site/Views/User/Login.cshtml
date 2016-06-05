@@ -1,0 +1,39 @@
+﻿@{
+	ViewBag.Title = "Вход";
+}
+@section TopLine
+{
+	<h1 class="very-narrow-page">
+		Вход</h1>
+}
+<div class="very-narrow-page">
+	@using (Html.BeginForm())
+ { 
+		<p>
+			<label for="login">
+				Логин:</label>
+			@Html.TextBox("login", null, new { @class = "required" })
+			@Html.ValidationMessage("login")
+		</p>
+		<p>
+			<label for="password">
+				Пароль:</label>
+			@Html.Password("password", null, new { @class = "required" })
+			@Html.ValidationMessage("password")
+		</p>
+		<table cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					@Html.CheckBox("rememberme", false)
+					<label for="rememberme">
+						запомнить</label>
+					<input type="submit" value="Войти" />
+				</td>
+				<td align="right">
+					@Html.ActionLink("Забыли пароль?", "RestorePassword")
+				</td>
+			</tr>
+		</table>
+ }
+</div>
+@Html.Partial("Reformal")

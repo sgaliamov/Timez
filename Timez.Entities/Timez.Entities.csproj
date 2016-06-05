@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84E20653-76E3-4603-ACA7-25885719F9F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Timez.Entities</RootNamespace>
+    <AssemblyName>Timez.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug All|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug All\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Timez.Entities.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\EmployeeSettings.cs" />
+    <Compile Include="Classes\EventDataFilter.cs" />
+    <Compile Include="Classes\MockUser.cs" />
+    <Compile Include="Classes\ProjectsUser.cs" />
+    <Compile Include="Classes\TimezStatus.cs" />
+    <Compile Include="Classes\TaskFilter.cs" />
+    <Compile Include="Classes\TimezTask.cs" />
+    <Compile Include="Enums\BoardsUserRole.cs" />
+    <Compile Include="Enums\EventType.cs" />
+    <Compile Include="Enums\ReciveType.cs" />
+    <Compile Include="Enums\RegistrationType.cs" />
+    <Compile Include="Enums\TasksSortType.cs" />
+    <Compile Include="Enums\TextType.cs" />
+    <Compile Include="Exceptions\CanBeOnlyOneFreeException.cs" />
+    <Compile Include="Exceptions\NeedProjectException.cs" />
+    <Compile Include="Exceptions\TasksExistsException.cs" />
+    <Compile Include="Exceptions\InvalidOperation.cs" />
+    <Compile Include="Exceptions\NeedAdminException.cs" />
+    <Compile Include="Exceptions\PlanningTimeIsExceeded.cs" />
+    <Compile Include="Exceptions\TaskCountLimitIsReached.cs" />
+    <Compile Include="Exceptions\PlanningTimeRequered.cs" />
+    <Compile Include="Exceptions\TaskNotFoundException.cs" />
+    <Compile Include="Exceptions\TimezException.cs" />
+    <Compile Include="Exceptions\TariffException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Interfaces\IEventHistory.cs" />
+    <Compile Include="Interfaces\IBoard.cs" />
+    <Compile Include="Interfaces\IBoardsColor.cs" />
+    <Compile Include="Interfaces\IBoardsUser.cs" />
+    <Compile Include="Interfaces\IId.cs" />
+    <Compile Include="Interfaces\IOrganization.cs" />
+    <Compile Include="Interfaces\IProject.cs" />
+    <Compile Include="Interfaces\IProjectsUser.cs" />
+    <Compile Include="Interfaces\ITariff.cs" />
+    <Compile Include="Interfaces\ITask.cs" />
+    <Compile Include="Interfaces\ITasksArchive.cs" />
+    <Compile Include="Interfaces\ITasksCheckList.cs" />
+    <Compile Include="Interfaces\ITasksComment.cs" />
+    <Compile Include="Interfaces\ITasksStatus.cs" />
+    <Compile Include="Interfaces\ITasksStatusTime.cs" />
+    <Compile Include="Interfaces\IText.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IUsersInvite.cs" />
+    <Compile Include="Interfaces\IUsersWorkingTime.cs" />
+    <Compile Include="Enums\EmployeeRole.cs" />
+    <Compile Include="Classes\TimezBoardsColor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\UserSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{7DA4C249-B042-4F1D-B78C-CA434FD3F442}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

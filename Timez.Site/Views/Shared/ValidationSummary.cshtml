@@ -1,0 +1,23 @@
+﻿@using System.Text
+@if (!ViewData.ModelState.IsValid)
+{
+    StringBuilder message = new StringBuilder();
+    foreach (var state in ViewData.ModelState)
+    {
+        foreach (var error in state.Value.Errors)
+        {
+            if (!error.ErrorMessage.IsNullOrEmpty())
+            {
+                message.AppendLine(error.ErrorMessage);
+            }
+
+            if (error.Exception != null)
+            {
+                message.AppendLine(error.Exception.Message);
+            }
+        }
+    }       
+    <script type="text/javascript">
+        $(function () { Main.Message("Сообщение об ошибке", "@Html.Raw(message.ToString().Trim().HtmlEncode().ToHtml())"); });
+    </script>
+}

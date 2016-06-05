@@ -1,0 +1,59 @@
+﻿@using Timez.Helpers;
+@using Common.Extentions;
+@model IEnumerable<IEventHistory>
+<table class="table">
+	<thead>
+		<tr>
+			<th style="width: 120px">
+				Время
+			</th>
+			<th style="width: 420px">
+				Событие
+			</th>
+			<th>
+				Задача
+			</th>
+			<th style="width: 120px">
+				Проект
+			</th>
+			<th style="width: 120px">
+				Инициатор
+			</th>
+		</tr>
+	</thead>
+	<tbody class='event-data'>
+		@foreach (IEventHistory item in Model)
+  {
+			<tr class="@item.HtmlClass()">
+				<td>
+					@ViewContext.ToUserTime(item.EventDateTime).DateTime.ToShortDateString():@ViewContext.ToUserTime(item.EventDateTime).ToString("HH:mm")
+				</td>
+				<td>
+					@Html.Raw(item.Event.HtmlEncode().ToHtml())
+				</td>
+				<td>
+					@Html.ActionLink(item.TaskName.CutText(100), "Details", "Tasks", new { id = item.TaskId, boardId = item.BoardId, isArchive = item.EventType == EventType.TaskToArchive }, null)
+				</td>
+				<td>
+					@item.ProjectName
+				</td>
+				<td>
+					@item.UserNick
+				</td>
+			</tr>
+  }
+	</tbody>
+</table>
+<div class="buttons">
+	@Html.Partial("Pager",
+		new Pager
+		{
+			ItemsOnPage = Pager.DefaultItemsOnPage,
+			PageIndex = ViewData.Get<int>("Page"),
+			TotalItems = ViewData.Get<int>("TotalItems")
+		})
+	<script type="text/javascript">
+		function LogItems_InitPager() { Pager($("#log-table"), '@Url.Action("Items", ViewContext.RouteData.Values)'); }
+		$(LogItems_InitPager);
+	</script>
+</div>

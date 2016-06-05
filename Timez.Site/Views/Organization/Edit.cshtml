@@ -1,0 +1,99 @@
+﻿@model IOrganization
+<div class="board-settings">
+    @using (Ajax.BeginForm(new CommonAjaxOptions("Organizations")))
+    {
+        List<ITariff> tariffs = ViewData.Get<List<ITariff>>("tariffs");
+        <p>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "focused" })
+            @Html.ValidationMessageFor(m => m.Name)
+            @if (Model != null)
+            {
+                @Html.HiddenFor(m => m.Id)    
+            }
+        </p>
+            if (Model != null)
+            {
+        <b>Баланс: </b>@Model.Money.ToString("0") @Html.Raw(" &euro;")
+            }
+        <h2>
+            Тариф
+        </h2>
+        @Html.ValidationMessageFor(m => m.TariffId)
+        <table cellpadding="0" cellspacing="0" class="tariffs">
+            <tr>
+                @foreach (ITariff tariff in tariffs)
+                {
+                    <th>
+                        @Html.Label("TariffId-" + tariff.Id.ToString(), tariff.Name)
+                    </th>
+                }
+            </tr>
+            <tr>
+                @foreach (ITariff tariff in tariffs)
+                {
+                    
+                    <td>
+                        @Html.RadioButton("TariffId", tariff.Id.ToString(),
+                            Model != null && tariff.Id == Model.TariffId,
+                            new { id = "TariffId-" + tariff.Id.ToString() })
+                    </td>
+                }
+            </tr>
+            <tr>
+                @foreach (ITariff tariff in tariffs)
+                {
+                    <td>
+                        <p>
+                            <i>Доступно досок:</i> <b>
+                                @Html.Raw(tariff.BoardsCount.HasValue ? tariff.BoardsCount.Value.ToString() : "&#8734;")
+                            </b>
+                        </p>
+                        <p>
+                            <i>Проектов на доске:</i> <b>
+                                @Html.Raw(tariff.ProjectsPerBoard.HasValue ? tariff.ProjectsPerBoard.Value.ToString() : "&#8734;")
+                            </b>
+                        </p>
+                        <p>
+                            <i>Сотрудников:</i> <b>
+                                @Html.Raw(tariff.EmployeesCount.HasValue ? tariff.EmployeesCount.Value.ToString() : "&#8734;")
+                            </b>
+                        </p>
+                        <p>
+                            <i>Свои стили:</i> <b>
+                                @Html.Raw(tariff.Flags.HasTheFlag((int)TariffFlags.EnableCss) ? "Да" : "Нет")
+                            </b>
+                        </p>
+                        <p>
+                            <i>Свой логотип:</i> <b>
+                                @Html.Raw(tariff.Flags.HasTheFlag((int)TariffFlags.EnableLogo) ? "Да" : "Нет")
+                            </b>
+                        </p>
+                        <p>
+                            <i>Домен третьего уровня:</i> <b>
+                                @Html.Raw(tariff.Flags.HasTheFlag((int)TariffFlags.EnableDomain) ? "Да" : "Нет")
+                            </b>
+                        </p>
+                        <p>
+                            @if (tariff.Price == 0)
+                            {
+                                <b><i>Бесплатно</i></b>
+                            }
+                            else
+                            { 
+                                <i>Цена:</i> <b>
+                                    @Html.Raw(tariff.Price.ToString("0"))
+                                </b>
+                                <i>&euro; в месяц</i>
+                            }
+                        </p>
+                    </td>
+                }
+            </tr>
+        </table>
+        <center>
+            <input type="submit" value="@Html.Raw(Model == null ? "Создать" : "Сохранить изменения")" class="save-button" />
+            <input type="button" value="Отмена" class="close-button" />
+        </center>        
+    }
+</div>

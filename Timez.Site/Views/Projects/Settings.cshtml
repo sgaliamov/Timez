@@ -1,0 +1,26 @@
+﻿@* Настройки проекта у пользователя 
+***************************************************@
+@using Timez.Helpers;
+@using Common.Extentions;
+@model IProjectsUser
+<p>
+    <b>Доска:</b>
+    @{
+        var board = ViewData.Get<IBoard>("Board");
+	}
+    @Html.ActionLink(board.Name, "Index", "Kanban", new { id = board.Id }, null)
+</p>
+<h4>
+    Уведомления по проекту:</h4>
+<div>
+    @Html.CheckBox("TaskAssigned", Model != null && Model.ReciveEMail.HasTheFlag((int)ReciveType.TaskAssigned))
+    @Html.Label("TaskAssigned", "Когда на вас назначена какая-то задача")
+</div>
+<div>
+    @Html.CheckBox("TaskStatusChanged", Model != null && Model.ReciveEMail.HasTheFlag((int)ReciveType.TaskStatusChanged))
+    @Html.Label("TaskStatusChanged", "Когда меняется статус у любой задачи в проекте")
+</div>
+<div class="line">
+    @Html.CheckBox("TaskCreated", Model != null && Model.ReciveEMail.HasTheFlag((int)ReciveType.TaskCreated))
+    @Html.Label("TaskCreated", "Когда создана новая задача в проекте")
+</div>

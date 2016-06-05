@@ -1,0 +1,82 @@
+﻿@model List<EmployeeSettings>
+@if (Model.Count > 0)
+{
+	<table class="table organization-list">
+		<thead>
+			<tr>
+				<th>
+					Название
+				</th>
+				<th title="Выйти" class="button">
+				</th>
+				<th class="button">
+				</th>
+				<th title="Удалить" class="button">
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (EmployeeSettings item in Model)
+   {
+	   EmployeeRole role = item.Settings.GetUserRole();
+	   bool isAdmin = role.HasTheFlag(EmployeeRole.Administrator);
+				<tr>
+					<td>
+						@if (isAdmin)
+	  {
+							@Html.ActionLink(item.Organization.Name, "Index", new { id = item.Organization.Id })
+	  }
+	  else
+	  { 
+							@item.Organization.Name
+	  }
+					</td>
+					<td>
+						<span class="circle-button">
+							@Ajax.ActionLink("leave", "Leave",
+								new { id = item.Organization.Id },
+								new CommonAjaxOptions("Organizations") { Confirm = "Вы уверены, что хотите покинуть организацию?" },
+								new { @class = "ui-icon ui-icon-suitcase", title = "Покинуть организацию" })</span>
+					</td>
+					<td>
+						@if (isAdmin)
+	  {
+							<button type="button" title="Тариф" class="org-edit circle-button" org-id="@item.Organization.Id">
+								<span class="ui-icon ui-icon-cart"></span>
+							</button>
+	  }
+					</td>
+					<td>
+						@if (isAdmin)
+	  {
+							<span class="circle-button">
+								@Ajax.ActionLink("X", "Delete",
+									new { id = item.Organization.Id },
+									new CommonAjaxOptions("Organizations") { Confirm = "Вы уверены, что хотите удалить организацию?" },
+									new { @class = "ui-icon ui-icon-trash red org-delete", title = "Удалить организацию" })</span>
+	  }
+					</td>
+				</tr>
+   }
+		</tbody>
+	</table>
+}
+else
+{
+	<i>У вас нет организаций.</i>    
+}
+<div class="buttons">
+	<input type="button" class="org-edit" value="Создать огранизацию" />
+</div>
+@Html.Partial("ValidationSummary")
+<script type="text/javascript">
+	$(function () {
+		$(".org-edit").click(function () {
+			var button = $(this);
+			var data = { id: button.attr("org-id") };
+			var title = data.id ? "Редактирование организации" : "Создание организации";
+			var options = { width: 600 };
+			Main.LoadDialog(title, '@Url.Action("Edit", "Organization")', data, true, options);
+		});
+	});
+</script>

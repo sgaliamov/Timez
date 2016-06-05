@@ -1,0 +1,28 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+<meta http-equiv="PRAGMA" content="NO-CACHE" />
+<title>TimeZ.org</title>
+</head>
+<body>
+<p>
+Проводятся профилактические работы.<br/>
+Приносим свои извинения.
+</p>
+Carry out preventive work. <br/>
+We apologize.
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-15653391-1");
+        pageTracker._setDomainName(".timez.org");
+        pageTracker._trackPageview();
+    } catch (err) { }</script>
+</body>
+</html>

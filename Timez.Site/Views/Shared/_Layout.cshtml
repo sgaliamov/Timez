@@ -1,0 +1,36 @@
+﻿@using Combres
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+	<meta name="keywords" content="PM, kanban, time managment, time control, bug tracker, issue tracker, project managment, управление проектами, канбан, баги, багтреккер, кайдзен" />
+	<meta name="description" content="You don't have enough control. You don't know what your subordinates do. You need a unified system of control tasks and time. You here! Вам не хватает контроля? Вы не знаете, чем занимаются ваши подчиненные? Вам нужна единая система контроля задач и времени? Вам сюда!" />
+	<meta name="author" content="info@timez.org" />
+	<meta name="copyright" content="info@timez.org" />
+	@RenderSection("MetaTagsContent", false)
+	<title>@ViewBag.Title | TimeZ.org</title>
+	@Html.Raw(WebExtensions.CombresLink("siteCss"))
+	@RenderSection("StylesContent", false)
+	@Html.Raw(WebExtensions.CombresLink("siteJs"))
+	@RenderSection("ScriptsContent", false)
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			@Html.ActionLink("TimeZ.org", "Index", "Home", null, new { id = "logo" })
+			@Html.Partial("MainMenu")
+			@Html.Partial("LoginControl")
+		</div>
+		<div id="top-line">
+			@RenderSection("TopLine", false)
+		</div>
+		<div id="main">
+			@RenderBody()
+		</div>
+		@RenderSection("Footer", false)
+	</div>
+	<div id='ajaxloader'>
+		Обработка...</div>
+</body>
+</html>

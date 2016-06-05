@@ -1,0 +1,84 @@
+﻿@model UserSettings
+<div class="board-settings">
+	@using (Ajax.BeginForm(new CommonAjaxOptions("ParticipantsList")))
+ {
+	 var user = ViewContext.GetCurrentUser();
+	 UserRole role = (UserRole)Model.Settings.UserRole;
+		<fieldset>
+			<h4>
+				@Model.User.Nick</h4>
+			@if (Model.User.Id != user.Id)
+   {
+				<div>
+					@Html.CheckBox("IsActive", Model.Settings.IsActive)
+					@Html.Label("IsActive", "Включен")
+				</div>
+   }
+			<h4>
+				Права</h4>
+			<div>
+				@Html.CheckBox("IsOwner", role.HasTheFlag(UserRole.Owner), new { @class = "owner-role role" })
+				@Html.Label("IsOwner", "Администратор доски")
+				<ul>
+					<li>Редактирование настроек доски</li>
+					<li>Редактирование проектов</li>
+					<li>Редактирование статусов</li>
+					<li>Редактирование приоритетов</li>
+					<li>Настройка учасников</li>
+					<li><i>Администратор не может быть исключен с доски. Снимите эту роль, если хотите исключить
+						пользователя.</i></li>
+				</ul>
+			</div>
+			<div>
+				@Html.CheckBox("IsCustomer", role.HasTheFlag(UserRole.Customer), new { @class = "role" })
+				@Html.Label("IsCustomer", "Заказчик")
+				<ul>
+					<li>Создание задач</li>
+					<li>Просмотр созданных задач на доске, таблице, в журнале</li>
+					<li>Редактирование созданных задач</li>
+					<li>Комментирование созданных задач</li>
+				</ul>
+			</div>
+			<div>
+				@Html.CheckBox("IsObserver", role.HasTheFlag(UserRole.Observer), new { @class = "role" })
+				@Html.Label("IsObserver", "Наблюдатель")
+				<ul>
+					<li>Просматривать все задачи на доске</li>
+				</ul>
+			</div>
+			<div>
+				@Html.CheckBox("IsExecutor", role.HasTheFlag(UserRole.Executor), new { @class = "role" })
+				@Html.Label("IsExecutor", "Исполнитель")
+				<ul>
+					<li>Менять статусы назначенных задач</li>
+					<li>Редактирование назначенных задач</li>
+					<li>Создание собственных задач</li>
+				</ul>
+			</div>
+		</fieldset>
+		<div class="buttons">
+			@if (user.Id != Model.User.Id && !role.HasTheFlag(UserRole.Owner))
+   {
+				<input type="submit" value="Исключить с доски" name="delete" class="left red save-button delete-button" />
+   }
+			<input type="submit" value="Сохранить" name="save" class="save-button" />
+			<input type="button" value="Отмена" class="close-button" />
+		</div>
+		@Html.ValidationSummary()        
+ }
+</div>
+<script type="text/javascript">
+	$(function () {
+		$(".delete-button").click(function () {
+			return window.confirm("Вы уверены что хотите исключить пользователя @Model.User.Nick из доски?");
+		});
+
+		// отмечаем все роли, когда выбираем роль владельца
+		var roles = $(".role").click(function () {
+			if (!$(this).is(':checked')) { owner.attr("checked", false); }
+		});
+		var owner = $(".owner-role").click(function () {
+			if (owner.is(':checked')) { roles.attr("checked", true); }
+		});
+	});
+</script>

@@ -1,0 +1,31 @@
+﻿@section TopLine
+{
+	<h1 class="start-page">
+		Онлайн канбан доска
+	</h1>
+}
+@section MetaTagsContent
+{
+	<meta property="og:title" content="Timez.Org" />
+}
+@section Footer
+{
+	<div id="footer">
+		&copy;<a href="mailto:info@timez.org">TimeZ.org</a>
+	</div>
+}
+@{
+	ViewBag.Title = "Главная страница";
+}
+<div class="start-page">
+	<div class="left">
+		@Html.Action("Text", "Texts", new { Id = 1 })
+		@Html.Partial("Like")</div>
+	<div class="right">
+		@*			<h2>
+				Последние новости
+			</h2>*@
+		<div id="last-news">@Html.Action("List", "News", new { count = ViewBag.LastNewsOnPage })</div>
+	</div>
+	@Html.Partial("Reformal")
+</div>

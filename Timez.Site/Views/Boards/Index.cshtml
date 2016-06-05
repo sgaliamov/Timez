@@ -1,0 +1,19 @@
+﻿@model List<IBoard>
+@section TopLine
+{
+	<h1>
+		Мои доски</h1>
+}
+@{
+
+	ViewBag.Title = "Доски";	
+}
+<div class="narrow-page" style="padding-top: 26px;">
+	@Html.Action("List")
+	<div class="buttons">
+		@Html.ActionLink("Создать доску", "Create", null, new { @class = "button" })
+	</div>
+	@Html.Action("List", "Invite")
+</div>
+@Html.Partial("Reformal")
+@Html.Partial("ValidationSummary")

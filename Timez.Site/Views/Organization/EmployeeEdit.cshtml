@@ -1,0 +1,49 @@
+﻿@model EmployeeSettings
+<div class="board-settings">
+    @using (Ajax.BeginForm(new CommonAjaxOptions("EmployeeList")))
+    {
+        var user = ViewContext.GetCurrentUser();
+        EmployeeRole role = (EmployeeRole)Model.Settings.UserRole;
+        <fieldset>
+            <h4>
+                @Model.User.Nick</h4>
+            <div>
+                @Html.RadioButton("Role", (int)EmployeeRole.Administrator,
+                    role.HasTheFlag(EmployeeRole.Administrator), new { @class = "owner-role role", id = "IsAdministrator" })
+                @Html.Label("IsAdministrator", "Администратор")
+                <ul>
+                    <li>Создание/удаление досок</li>
+                    <li>Редактирование/исключение сотрудников</li>
+                    <li>Приглашение новых сотрудников</li>
+                    <li>Смена тарифного плана</li>
+                </ul>
+            </div>
+            <div>
+                @Html.RadioButton("Role", (int)EmployeeRole.Employee,
+                    role.HasTheFlag(EmployeeRole.Employee), new { @class = "role", id = "IsEmployee" })
+                @Html.Label("IsEmployee", "Сотрудник")
+                <ul>
+                    <li>Работа с досками, на которые он добавлен</li>
+                    <li>Права на досках задаются на каждой доске индивидуально</li>
+                    <li>Клиенты организации</li>
+                </ul>
+            </div>
+        </fieldset>
+        <div class="buttons">
+            @if (user.Id != Model.User.Id && !role.HasTheFlag(EmployeeRole.Administrator))
+            {
+                <input type="submit" value="Исключить из организации" id="delete" name="delete" class="left red save-button delete-button" />
+            }
+            else
+            { 
+                <i class="left">Администратора нельзя исключить</i>
+            }
+            <input type="submit" value="Сохранить" name="save" id="save" class="save-button" />
+            <input type="button" value="Отмена" class="close-button" />
+        </div>
+        @Html.ValidationSummary()        
+    }
+</div>
+<script type="text/javascript">
+    $(function () { $(".delete-button").click(function () { return window.confirm("Вы уверены что хотите исключить пользователя @Model.User.Nick из доски?"); }); });
+</script>

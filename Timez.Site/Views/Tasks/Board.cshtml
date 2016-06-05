@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ITask>
+@section TopLine
+{
+	@Html.Action("KanbanFilter", "Kanban", new
+	{
+		OnSuccess = "InitPager",
+		UpdateTargetId = "tasks-table",
+		ShowStatusFilter = true
+	})
+}
+@section ScriptsContent
+{
+	@Html.Raw(WebExtensions.CombresLink("kanbanFilterJs"))
+}
+@{
+	ViewBag.Title = "Все задачи";
+	string currentAction = Url.Action("TasksTable"); 
+	<div class="page">
+		<script type="text/javascript">
+			function InitPager() { Pager($("#tasks-table"), '@currentAction'); }            
+		</script>
+		<div id="tasks-table">
+			@Html.Action("TasksTable")
+		</div>
+	</div>
+}

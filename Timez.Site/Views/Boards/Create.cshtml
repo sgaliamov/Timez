@@ -1,0 +1,17 @@
+﻿@model IBoard
+@section ScriptsContent
+{
+}
+@section TopLine
+{
+	<h1>
+		Создание новой доски</h1>
+}
+@{
+	ViewBag.Title = "Создание доски";
+
+	<div class="narrow-page">
+		@Html.Partial("EditDetails")
+	</div>
+	@Html.Partial("Reformal")
+}

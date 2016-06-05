@@ -1,0 +1,18 @@
+﻿@model IBoard
+@section TopLine
+{
+	<h1>
+		@Model.Name</h1>
+}
+@{
+	ViewBag.Title = Model.Name;
+
+	<div class="narrow-page">
+		@Model.Description
+		@if (string.IsNullOrWhiteSpace(Model.Description))
+		{
+			<i>Нет описания</i>
+		}
+	</div>
+	@Html.Partial("Reformal")
+}

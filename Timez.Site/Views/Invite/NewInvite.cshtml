@@ -1,0 +1,64 @@
+﻿@model IOrganization
+@{
+    int? count = ViewData.Get<int?>("AvailableUsersCount");
+}
+@if (count.HasValue && count.Value > 0)
+{
+    string text = "участников";
+    if (count < 5 || count > 20)
+    {
+        int remainder = count.Value % 10;
+        if (remainder < 5)
+        {
+            text = "участника";
+        }
+    }
+    <p>
+        Можно пригласить еще <b>@count.Value.ToString()</b> @text.
+    </p>
+}
+@if (!count.HasValue || count.Value > 0)
+{
+    using (Ajax.BeginForm("NewInvite", new CommonAjaxOptions("NewInvite")))
+    {
+    <h2>
+        Пригласить через email
+    </h2>
+    <p>
+        @Html.TextBox("EMail", null, new { @class = "required validate email" })
+    </p>
+    <p class="buttons">
+        <i class="left line">
+            @Html.Raw((string)ViewData.Get("Message"))
+        </i>
+        <input type="submit" value="Пригласить" />
+    </p>
+    @Html.ValidationSummary()
+    }
+    <h2>
+        Быстрая ссылка приглашения
+    </h2>
+    <p>
+        <i><b id="link-line">@Url.Action("Invite", "User", null, "http")/<span id="QuickLink">@Model.InviteCode</span></b>
+            Вы можете передать данную ссылку нескольким людям.<br />
+            Пройдя по ней, они сразу же окажутся в списке учасников этой доски.</i>
+    </p>
+    <p class="buttons">
+        <input type="button" value="Копировать в буфер" id="link-copy" />
+        @Ajax.ActionLink("Сгенерировать новую ссылку", "GenerateQuickLing", new { Id = Model.Id }, new CommonAjaxOptions("QuickLink"), new { @class = "button" })
+    </p>
+    <script type="text/javascript">
+        $(function () {
+            $("#link-copy").click(function () {
+                window.prompt("Нажмите Ctrl+C, чтобы скопировать в буфер обмена.", $("#link-line").text());
+            });
+        });
+    </script>    
+}
+else
+{
+    <p>
+        Вы не можете приглашать сотрудников в организацию.<br />
+        Если вам требуется больше сотрудников, перейдите на другой тариф.
+    </p>
+}

@@ -1,0 +1,110 @@
+﻿@using Timez.Helpers;
+@helper BoldFirst(string text)
+	{
+	<i><b>@text[0]</b></i>@text.Substring(1)    
+}
+<div id="task-popup" class="validate">
+	@{
+		using (Ajax.BeginForm("TaskPopup", new CommonAjaxOptions
+		{
+			OnSuccess = "Kanban.Popup.OnSuccess",
+			OnBegin = "Kanban.Popup.OnBeginPost"
+		}))
+		{
+			int colorId = ViewData.Get<int>("SelectedColor");
+			int projId = ViewData.Get<int>("SelectedProject");
+			int userId = ViewData.Get<int>("SelectedUser");
+			int statusId = ViewData.Get<int>("BacklogId");
+		<p>
+			@Html.TextArea("task-name", new { maxlength = "1000", @class = "required focused autogrow value", title = "Укажите название задачи" })
+		</p>
+		<table class="settings-table">
+			<tr>
+				<td class="label">
+					<label for="task-planning-hours">
+						Планируемя длительность:</label>
+				</td>
+				<td class="time">
+					@Html.TextBox("task-planning-hours", null, new { @class = "digits number value", title = "Введите часы корректно", maxlength = "3" })
+					<i>час.</i>
+					@Html.TextBox("task-planning-minutes", null, new { @class = "digits number value", title = "Введите минуты корректно", maxlength = "3" })
+					<i>мин.</i>
+				</td>
+			</tr>
+		</table>
+		<p>
+			<label for="task-description">
+				Дополнительное описание:</label>
+			@Html.TextArea("task-description", new { @class = "value" })
+		</p>
+		<table class="settings-table">
+			<tr>
+				<td>
+					<label>
+						Выбрано:</label>&nbsp;
+				</td>
+				<td id="task-settings-selected">
+				</td>
+			</tr>
+		</table>
+		<div id="tabs" class="task-settings">
+			<ul class="task-settings-menu">
+				<li><a href="#task-tab-user">Исполнитель</a></li>
+				<li><a href="#task-tab-project">Проект</a></li>
+				<li><a href="#task-tab-status">Статус</a></li>
+				<li><a href="#task-tab-color">Приоритет</a></li>
+			</ul>
+			@*Выделенность определяется в момент показа*@
+			<div id="task-tab-user" class="tab">
+				<ul class="selectable-list" data-target="#task-userid" id="task-userid-list">
+					@foreach (var user in ViewData.GetCollection<IUser>("UsersCollection"))
+	 {
+		 string classAttr = user.Id == userId ? "class='selected'" : string.Empty;
+						<li @Html.Raw(classAttr) data-val="@user.Id"><span>@BoldFirst(user.Nick)</span></li>
+	 }
+				</ul>
+				@Html.Hidden("task-userid", userId)
+			</div>
+			<div id="task-tab-project" class="tab">
+				<ul class="selectable-list" data-target="#task-projectsid" id="task-projectsid-list">
+					@foreach (var prj in ViewData.GetCollection<IProject>("ProjectsCollection"))
+	 {
+		 string classAttr = prj.Id == projId ? "class='selected'" : string.Empty;
+						<li @Html.Raw(classAttr) data-val="@prj.Id"><span>@BoldFirst(@prj.Name)</span></li>
+	 }
+				</ul>
+				@Html.Hidden("task-projectsid", projId)
+			</div>
+			<div id="task-tab-status" class="tab">
+				<ul class="selectable-list" data-target="#task-statusid" id="task-statusid-list">
+					@foreach (var status in ViewData.GetCollection<ITasksStatus>("StatusCollection"))
+	 {
+		 string classAttr = status.Id == statusId ? "class='selected'" : string.Empty;
+						<li @Html.Raw(classAttr) @Html.Raw(status.PlanningRequired ? "class='required'" : "") data-val="@status.Id">
+							<span>@BoldFirst(@status.Name)</span></li>
+	 }
+				</ul>
+				@Html.Hidden("task-statusid", statusId)
+			</div>
+			<div id="task-tab-color" class="tab">
+				<ul class="selectable-list" data-target="#task-colorid" id="task-colorid-list">
+					@foreach (var color in ViewData.GetCollection<IBoardsColor>("ColorsCollection"))
+	 {
+		 string classAttr = color.Id == colorId ? "class='selected'" : string.Empty;
+						<li @Html.Raw(classAttr) data-val="@color.Id"><span>@BoldFirst(@color.Name)</span></li>
+	 }
+				</ul>
+				@Html.Hidden("task-colorid", colorId)
+			</div>
+		</div>
+		@Html.Hidden("task-id", null, new { @class = "value" })
+		@Html.Hidden("task-forsed-count", false, new { @class = "value forsed" })
+		@Html.Hidden("task-forsed-time", false, new { @class = "value forsed" })
+		<input type="button" value="Отмена" onclick="Kanban.Popup.Close();" style="width: 280px;
+			float: right;" title="Esc" />
+		<input type="submit" value="Сохранить и вернуться к доске" style="width: 280px;"
+			title="Ctrl+Enter" />
+		@Html.ValidationSummary(string.Empty, new { Id = "validation-summary-errors" })
+		}
+	}
+</div>

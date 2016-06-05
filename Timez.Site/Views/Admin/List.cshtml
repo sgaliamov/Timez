@@ -1,0 +1,11 @@
+﻿@model Timez.BLL.Texts.TextsUtility.TextsCollection
+
+<ul>
+	@foreach (IText text in Model.Collection)
+ {
+		<li>
+			@Html.ActionLink(text.Title, "Edit", new { text.Id })
+			@Html.ActionLink("Удалить", "Delete", new { text.Id })
+		</li>
+ }
+</ul>

@@ -1,0 +1,29 @@
+﻿@using Timez.Helpers;
+@using (Ajax.BeginForm(new CommonAjaxOptions("log-table") { OnSuccess = "LogItems_InitPager" }))
+{
+    <table id="EventHistoryFilter" class="eventHistory-filter">
+        <tr>
+            <td>
+                <b>Фильтры</b>
+            </td>
+            <td>
+                @{Html.RenderPartial("DropdownCheckList", ViewData.Get("Users"));}
+            </td>
+            <td>
+                @{Html.RenderPartial("DropdownCheckList", ViewData.Get("Projects"));}
+            </td>
+            <td>
+                @{ Html.RenderPartial("DropdownCheckList", ViewData.Get("EventTypes"));}
+            </td>
+            <td>
+                <button type="submit" id="filter">
+					<span>Фильтровать</span>
+					<span class="ui-icon ui-icon-refresh"></span>
+				</button>
+            </td>
+            <tr>
+    </table>
+    <script type="text/javascript">
+        $("#Users, #Projects, #EventTypes ").dropdownchecklist({ firstItemChecksAll: true, width: 150, emptyText: "Ничего не выбрано" });
+    </script>
+}

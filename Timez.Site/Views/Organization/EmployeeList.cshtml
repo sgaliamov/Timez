@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EmployeeSettings>
+<table class="table">
+	<tr>
+		<th style="text-align: left;">
+			Сотрудник
+		</th>
+		<th class="button">
+		</th>
+	</tr>
+	@if (Model != null && Model.Count() > 0)
+ {
+
+	 EmployeeRole role = ViewData.Get<EmployeeRole>("RoleInOrganization");
+	 foreach (var item in Model)
+	 {            
+		<tr>
+			<td style="text-align: left;@Html.Raw(item.Settings.IsApproved ? "" : "color:Tomato;")">
+				@if (item.Settings.IsAdmin)
+	{
+					<b>@item.User.Nick</b>
+	}
+	else
+	{
+					@item.User.Nick
+	}
+			</td>
+			<td>
+				@if (role.HasTheFlag(EmployeeRole.Administrator))
+	{
+
+					<button type="button" class="participant-edit circle-button" value="≡" participant-id="@item.User.Id" org-id="@item.Settings.OrganizationId">
+						<span class="ui-icon ui-icon-wrench"></span>
+					</button>
+	}
+			</td>
+		</tr>
+	 }
+ }
+</table>
+@Html.Partial("ValidationSummary")
+<script type="text/javascript">
+	$(function () {
+		$(".participant-edit").click(function () {
+			var button = $(this);
+			var data = {
+				id: button.attr("participant-id"),
+				organizationId: button.attr("org-id")
+			};
+			Main.LoadDialog("Пользователь", '@Url.Action("EmployeeEdit", "Organization")', data, true);
+		});
+	});
+</script>

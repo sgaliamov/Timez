@@ -1,0 +1,77 @@
+﻿@model IOrganization
+@section ScriptsContent
+{
+	<script type="text/javascript">
+		$(function () { $("#tabs").tabs({ cookie: { expires: 1} }); });
+	</script>
+}
+@section TopLine
+{
+	<h1>
+		Организация '@Model.Name'
+	</h1>
+}
+@{
+	ViewBag.Title = "Организация " + Model.Name;
+	int? count = ViewData.Get<int?>("availableBoarsdCount");
+
+	<div class="narrow-page">
+		<div id="tabs">
+			<ul>
+				<li><a href="#EmployeeList">Сотрудники организации </a></li>
+				<li><a href="#NewInvite">Приглашение новых сотрудников</a></li>
+				<li><a href="#BoardsTab">Доски организации</a></li>
+			</ul>
+			<div id="EmployeeList">
+				@Html.Action("EmployeeList", Model.Id)
+			</div>
+			<div id="NewInvite">
+				@Html.Action("NewInvite", "Invite", Model.Id)
+			</div>
+			<div id="BoardsTab">
+				@Html.Action("List", "Boards", Model.Id)
+				@if (count.HasValue)
+				{
+					if (count > 0)
+					{
+						string boardsText = "досок";
+						if (count < 5 || count > 20)
+						{
+							int remainder = count.Value % 10;
+							if (remainder == 1)
+							{
+								boardsText = "доску";
+							}
+							else if (remainder > 1 && remainder < 5)
+							{
+								boardsText = "доски";
+							}
+						}
+					<div class="buttons">
+						<span class="left">Можно создать еще <b>
+							@count</b>
+							@boardsText.</span>
+						@Html.ActionLink("Создать доску", "Create", "Boards", new { Model.Id }, new { @class = "button" })
+					</div>
+					}
+					else
+					{
+					<p>
+						Вы больше не можете создавать доски в организации.<br />
+						Если вам требуется больше досок, перейдите на другой тариф.
+					</p>
+					}
+				}
+				else 
+				{
+				// no count limits
+					<div class="buttons">
+						@Html.ActionLink("Создать доску", "Create", "Boards", new { Model.Id }, new { @class = "button" })
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	@Html.Partial("Reformal")
+
+}

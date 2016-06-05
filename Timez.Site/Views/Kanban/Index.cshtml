@@ -1,0 +1,34 @@
+﻿@model IBoard
+@{
+	ViewBag.Title = Model.Name;
+
+	<div id="kanban">
+		@Html.Action("Kanban")
+	</div>
+	@Html.Action("TaskSubMenu")
+	@Html.Action("TaskPopup")
+	<script type="text/javascript">
+        Kanban.BoardId = @Model.Id;
+        @if (Model.RefreshPeriod.HasValue)
+		{
+			@:Kanban.UpdatePeriod = @Html.Raw((Model.RefreshPeriod.Value * 60000).ToString());
+        } 
+        Kanban.AjustSize();
+	</script>
+}
+@section ScriptsContent
+{
+	@Html.Raw(!ViewContext.GetUserRole().HasAnyFlag(UserRole.ExecutorAndOwnerAndCustomer)
+		 ? WebExtensions.CombresLink("kanbanLiteJs")
+		 : WebExtensions.CombresLink("kanbanJs"))
+}
+@section TopLine
+{
+	@Html.Action("KanbanFilter", new
+	{
+		OnSuccess = "Kanban.Filter_OnSuccess",
+		UpdateTargetId = "kanban",
+		ShowStatusFilter = false,
+		ActionName = "Index"
+	})
+}

@@ -1,0 +1,19 @@
+﻿@model List<IUser>
+<div class="board-settings">
+    @using (Ajax.BeginForm(new CommonAjaxOptions("ParticipantsList")))
+    {
+        <p>
+            Задач закреплено за пользователем:&nbsp;@ViewData.Get("TaskCount")</p>
+        <p>
+            @Html.DropDownList("participant-id"
+                , new SelectList(Model, "Id", "Nick")
+                , "Выберите на кого перекинуть задачи..."
+                , new { @class = "required", title = "Выберите нового исполнителя" })
+        </p>
+        <div class="buttons">
+            <input type="submit" value="Переназначить задачи" name="save" class="save-button" />
+            <input type="button" value="Отмена" class="close-button" />
+        </div>
+        @Html.ValidationSummary()
+    }
+</div>

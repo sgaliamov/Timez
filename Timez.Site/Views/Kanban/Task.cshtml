@@ -1,0 +1,45 @@
+﻿@model ITask
+@{
+    if (Model == null)
+    {
+        return;
+    }
+
+    DateTimeOffset statusChangeDateTime = ViewContext.ToUserTime(Model.StatusChangeDateTime);
+    string statusChangeDate = statusChangeDateTime.DateTime.ToString("dd MMM.");
+    string statusChangeTime = statusChangeDateTime.ToString("HH:mm");
+    string id = "task_" + Model.Id.ToString();
+    string planningTime = (Model.PlanningTime ?? 0).ToString();
+}
+<li class="task-wrapper">
+    <div class="task" id="@id" time="@Html.Raw(planningTime)">
+        <div class="task-head">
+            <div class="color" style="background: @Html.Raw(Model.ColorHEX)" title="@Html.Raw(Model.ColorName)">
+            </div>
+            <span class="project">
+                @Model.ProjectName
+            </span><span class="user"><a href="mailto:@Html.Raw(Model.ExecutorEmail)" target="_blank">
+                @Model.ExecutorNick</a></span>
+        </div>
+        <div class="title">
+            @Html.Raw(Model.Name.HtmlEncode().ToHtml())
+        </div>
+        <div class="bottom">
+            <span title="Время изменения статуса" class="change-time">
+                @statusChangeDate
+                @statusChangeTime</span>
+            @Html.ActionLink("...", "Details", "Tasks", new { Model.BoardId, Model.Id }, new { title = "Подробно" })
+            <div class="time">
+                <span title="Планируемое время">
+                    @Html.GetTimeString(Model.PlanningTime)</span>
+            </div>
+            @if (!Model.Description.IsNullOrEmpty())
+            {
+                <span class="more">Описание</span>
+                <div class="more-description">
+                    @Html.Raw(Model.Description.HtmlEncode().ToHtml())
+                </div>
+            }
+        </div>
+    </div>
+</li>

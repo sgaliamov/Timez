@@ -1,0 +1,92 @@
+﻿@using Timez.Entities;
+@using Common.Extentions;
+@using Timez.Helpers;
+@model IEnumerable<ITask>
+@{
+	var statuses = ViewData.GetCollection<ITasksStatus>("Statuses");    
+}
+<table class="table">
+	<thead>
+		<tr>
+			<th title="Приоритет" class="button">
+			</th>
+			<th>
+				Название
+			</th>
+			@if (statuses != null)
+   { 
+				<th>
+					Статус
+				</th>
+   }
+			<th>
+				Проект
+			</th>
+			<th>
+				Исполнитель
+			</th>
+			<th title="Подробнее" class="button">
+			</th>
+			@if (ViewContext.GetUserRole().HasAnyFlag(UserRole.ExecutorAndOwnerAndCustomer))
+   {
+				<th title="Удалить" class="button">
+				</th>
+   }
+		</tr>
+	</thead>
+	@foreach (var item in Model)
+ {
+	 bool? isArchive = item.TaskStatusId == TimezStatus.ArchiveStatusId ? (bool?)true : null;
+		<tr>
+			<td>
+				<div class="colorSelector">
+					<div style="background-color: @item.ColorHEX">
+					</div>
+				</div>
+			</td>
+			<td>
+				@Html.Raw(item.Name.HtmlEncode().ToHtml())
+			</td>
+			@if (statuses != null)
+   { 
+				<td>
+					@statuses.First(x => x.Id == item.TaskStatusId).Name
+				</td>
+   }
+			<td>
+				@item.ProjectName
+			</td>
+			<td>
+				@item.ExecutorNick
+			</td>
+			<td title="Подробнее" class="button">
+				<span class="circle-button">
+					@Html.ActionLink("?", "Details",
+					   new { id = item.Id, boardId = item.BoardId, isArchive },
+					   new { @class = "ui-icon ui-icon-help" })
+				</span>
+			</td>
+			@if (ViewContext.GetUserRole().HasAnyFlag(UserRole.ExecutorAndOwnerAndCustomer))
+   {
+				<td title="Удалить" class="button">
+					<span class="circle-button">
+						@Ajax.ActionLink("Х", "Delete", new { id = item.Id, boardId = item.BoardId, isArchive },
+					   new CommonAjaxOptions("tasks-table") { Confirm = "Вы уверены, что хотите удалить задачу?" },
+					   new { @class = "ui-icon ui-icon-trash red" })
+					</span>
+				</td>
+   }
+		</tr>
+ }
+</table>
+<div class="buttons">
+	@Html.Partial("Pager", new Pager
+	{
+		ItemsOnPage = Pager.DefaultItemsOnPage,
+		PageIndex = ViewData.Get<int>("Page"),
+		TotalItems = ViewData.Get<int>("TotalItems")
+	})
+	<script type="text/javascript">
+		$(InitPager);
+	</script>
+</div>

@@ -1,0 +1,13 @@
+﻿@model string
+@{
+	ViewBag.Title = "Сообщение";
+}
+@section TopLine
+{
+	<h1>
+		Cообщение</h1>
+}
+<div class="narrow-page">
+	@Html.Partial("String", Model)
+</div>
+@Html.Partial("Reformal")

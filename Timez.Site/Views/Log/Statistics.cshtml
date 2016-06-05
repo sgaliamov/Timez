@@ -1,0 +1,38 @@
+﻿@using Timez.Helpers;
+@using Timez.Entities;
+@model Dictionary<string, Dictionary<string, int>>
+<div id="log-statistics">
+    <h3>
+        Количество задач у пользователей в статусах
+    </h3>
+    @{
+        var statuses = ViewData.GetCollection<ITasksStatus>("Statuses");
+        string style = "style='width:" + (85 / statuses.Count()).ToString() + "%'";
+        <table class="table">
+            <tr>
+                <th>
+                </th>
+                @foreach (ITasksStatus item in statuses)
+                {
+                    <th @Html.Raw(style)>
+                        @item.Name
+                    </th>
+                }
+            </tr>
+            @foreach (var stauses in Model)
+            {
+                <tr>
+                    <td class="user">
+                        @stauses.Key
+                    </td>
+                    @foreach (var users in stauses.Value)
+                    {                        
+                        <td @Html.Raw(users.Value == 0 ? "class='red'" : "")>
+                            @users.Value
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    }
+</div>

@@ -1,0 +1,26 @@
+﻿@model HandleErrorInfo
+@section TopLine
+{
+	<h1>
+		Сообщение об ошибке
+	</h1>
+}
+@{
+	ViewBag.Title = "Ошибка";
+	Exception ex = Model.Exception;
+
+	<div class="page">
+		@while (ex != null)
+  {
+			<p>
+				<b>
+					@Model.Exception.Message</b>
+			</p>
+			<p style="padding-left: 50px;">
+				@Html.Raw(Model.Exception.StackTrace.ToHtml())
+			</p>
+	  ex = ex.InnerException;
+  }
+	</div>
+	@Html.Partial("Reformal")
+}

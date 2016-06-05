@@ -1,0 +1,45 @@
+﻿@model IUser
+@{
+	ViewBag.Title = "Настройка профиля";
+	var user = ViewContext.GetCurrentUser();
+}
+@section TopLine
+{
+	<h1>
+		Настройка профиля</h1>
+}
+@section ScriptsContent
+{
+	<script type="text/javascript">
+		$(function () { $("#tabs").tabs({ cookie: { expires: 1} }); });
+	</script>
+}
+<div class="narrow-page">
+	<div id="tabs">
+		<ul>
+			<li><a href="#EditCommonSettings">Основные настройки</a></li>
+			@if (user.GetRegistrationType() == RegistrationType.Default)
+   {
+				<li><a href="#EditPassword">Смена пароля</a></li>
+   }
+			<li><a href="#BoardsProjects">Уведомления</a></li>
+			<li><a href="#Organizations">Организации</a></li>
+		</ul>
+		<div id="EditCommonSettings">
+			@Html.Partial("EditCommonSettings", Model, ViewData)
+		</div>
+		@if (user.GetRegistrationType() == RegistrationType.Default)
+  {
+			<div id="EditPassword" class="tab">
+				@Html.Partial("EditPassword", Model, ViewData)
+			</div>
+  }
+		<div id="BoardsProjects" class="tab">
+			@Html.Action("UsersProjects", "Projects")
+		</div>
+		<div id="Organizations" class="tabs">
+			@Html.Action("UserOrganizations", "Organization")
+		</div>
+	</div>
+</div>
+@Html.Partial("Reformal")

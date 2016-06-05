@@ -1,0 +1,46 @@
+﻿@{   
+	string updateTargetId = ViewContext.RouteData.Values["UpdateTargetId"].ToString();
+	string onSuccess = ViewContext.RouteData.Values["OnSuccess"].ToString();
+}
+@using (Ajax.BeginForm(new CommonAjaxOptions(updateTargetId) { OnSuccess = onSuccess }))
+{
+	bool showStatusFilter = ViewContext.RouteData.Values["ShowStatusFilter"].To<bool>();
+	<table id="KanbanFilter" class="kanban-filter">
+		<tr>
+			<td style="width: 60px;">
+				<b>Фильтры</b>
+			</td>
+			<td>
+				@Html.Partial("DropdownCheckList", ViewData.Get("Users"))
+			</td>
+			<td>
+				@Html.Partial("DropdownCheckList", ViewData.Get("Projects"))
+			</td>
+			<td>
+				@Html.Partial("DropdownCheckList", ViewData.Get("Colors"))
+			</td>
+			@if (showStatusFilter)
+   { 
+				<td>
+					@Html.Partial("DropdownCheckList", ViewData.Get("StatusesView"))
+				</td>
+   }
+			<td>
+				<div style="height: 20px">
+					@Html.DropDownList("SortType", ViewData.GetCollection<SelectListItem>("SortTypeView"), "Сортировка...")
+				</div>
+			</td>
+			<td style="width: auto;">
+				@Html.TextBox("Search", null, new { placeholder = "По названию" })
+			</td>
+			<td class="last">
+				<button type="submit" id="filter">
+					<span>Фильтровать</span> <span class="ui-icon ui-icon-refresh"></span>
+				</button>
+				<button id="filter-reset" type="submit" class="reset" title="Сбросить фильтры">
+					<span class="ui-icon ui-icon-document-b"></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+}

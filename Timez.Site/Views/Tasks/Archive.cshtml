@@ -1,0 +1,33 @@
+﻿@model int
+@section TopLine
+{
+	@Html.Action("KanbanFilter", "Kanban", new
+	{
+		OnSuccess = "InitPager",
+		UpdateTargetId = "tasks-table",
+		ShowStatusFilter = false
+	})
+}
+@section ScriptsContent
+{
+	@Html.Raw(WebExtensions.CombresLink("kanbanFilterJs"))
+}
+@{
+	ViewBag.Title = "Архив";
+	string currentAction = Url.Action("ArchiveTable", new { id = Model });            
+	<div class="page">
+		<script type="text/javascript">
+			function InitPager() { Pager($("#tasks-table"), '@currentAction'); }
+		</script>
+		<h3>
+			Архивные задачи
+			@if (ViewContext.GetUserRole().HasTheFlag(UserRole.Owner))
+   {	
+				@Html.ActionLink("Очистить архив", "ClearArchive", new { id = Model }, new { @class = "clear-log" })
+   }
+		</h3>
+		<div id="tasks-table">
+			@Html.Action("ArchiveTable")
+		</div>
+	</div>
+}

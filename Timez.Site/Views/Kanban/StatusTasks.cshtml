@@ -1,0 +1,46 @@
+﻿@*Задачи в колонке статуса*@
+@model PagedTasks
+@{
+	var tasks = Model.Tasks; // пейджированные задачи
+	int count = Model.TotalCount;
+	int page = Model.Page;
+	const int itemsOnPage = Pager.DefaultItemsOnPage;
+}
+<div class="sub-header">
+	<div class="info">
+		Задач: <i class="count">
+			@count</i></div>
+	<div class="info" title="Сумма запланированного времени">
+		Запланировано на: <i class="planning-time" time="@Model.TotalMinutes">
+			@Html.GetTimeString(Model.TotalMinutes)</i> <sup>(чч:мин)</sup></div>
+	<div class="paging">
+		@Html.Partial("Pager", new Pager
+			{
+				ItemsOnPage = itemsOnPage,
+				PageIndex = page,
+				TotalItems = count,
+				NeedArrows = false
+			})
+	</div>
+</div>
+<ul>
+	@if (tasks != null && tasks.Any())
+ {
+	 foreach (var task in tasks)
+	 {
+		 Html.RenderPartial("Task", task, ViewData);
+	 }
+ }
+</ul>
+@if (count > itemsOnPage)
+{
+	<div class="bottom-line">
+		@Html.Partial("Pager", new Pager
+	   {
+		   ItemsOnPage = itemsOnPage,
+		   PageIndex = page,
+		   TotalItems = count,
+		   NeedArrows = false
+	   })
+	</div>
+}

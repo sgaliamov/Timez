@@ -1,0 +1,30 @@
+﻿@model IBoard
+@{
+	ViewBag.Title = "Журнал событий";
+}
+@section MetaTagsContent
+{
+	@if (Model.RefreshPeriod.HasValue)
+	{
+		@:<meta http-equiv="refresh" content="@(Model.RefreshPeriod.Value * 60)">
+	}
+}
+@section TopLine
+{
+	@Html.Action("Filter")
+}
+<div id="page">
+	@Html.Action("Statistics")
+	<h3 class="log-table">
+		События
+		@if (ViewContext.GetUserRole().HasTheFlag(UserRole.Owner))
+  {
+			@Html.ActionLink("Очисить журнал", "Clear",
+					new { Model.Id },
+					new { @class = "clear-log", onclick = "return window.confirm('Вы уверены, что хотите очистить журнал?')" })
+  }
+	</h3>
+	<div id="log-table" class="log-table">
+		@Html.Action("Items")
+	</div>
+</div>

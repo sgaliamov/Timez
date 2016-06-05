@@ -1,0 +1,18 @@
+﻿@model DropdownCheckList
+<div class="dropdown-checklist">
+	<select title="@Model.Title" id="@Model.Name" name="@Model.Name" multiple="multiple">
+		@if (Model.Label != null)
+  {
+	  // value="" обязательно
+			<option selected="selected" value="">
+				@Model.Label
+			</option>
+  }
+		@foreach (var item in Model.SelectList)
+  {            
+			<option  @Html.Raw(item.Selected ? "selected='selected'" : "") value="@item.Value">
+				@item.Text
+			</option>
+  }
+	</select>
+</div>

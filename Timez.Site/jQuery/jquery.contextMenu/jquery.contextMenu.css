@@ -1,0 +1,132 @@
+/* Generic context menu styles */
+.contextMenu
+{
+    position: absolute;
+    width: 150px;
+    z-index: 99999;
+    border: solid 1px #333;
+    background: #EEE;
+    padding: 0px;
+    margin: 0px;
+    display: none;
+}
+
+.contextMenu LI
+{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    position: relative;    
+}
+
+.contextMenu A
+{
+    color: #333;
+    text-decoration: none;
+    display: block;
+    line-height: 20px;
+    overflow:hidden;
+    background-position: 6px center;
+    background-repeat: no-repeat;
+    outline: none;
+    padding: 1px 10px 1px 28px;
+    /*
+    white-space: nowrap;
+    height: 20px;
+*/
+}
+
+.contextMenu LI.hover A:hover
+{
+    color: #FFF;
+    background-color: #3399FF;
+}
+
+.contextMenu LI.disabled A
+{
+    color: #AAA;
+    cursor: default;
+}
+
+.contextMenu LI.hover.disabled A
+{
+    background-color: transparent;
+}
+
+.contextMenu LI.separator
+{
+    border-top: solid 1px #CCC;
+}
+
+.contextMenu LI.separator-bottom
+{
+    border-bottom: solid 1px #CCC;
+}
+
+/*
+	Adding Icons
+	
+	You can add icons to the context menu by adding
+	classes to the respective LI element(s)
+*/
+
+.contextMenu LI A.edit 
+{
+    background-image: url(images/page_white_edit.png);
+}
+.contextMenu LI A.cut
+{
+    background-image: url(images/cut.png);
+}
+.contextMenu LI A.copy
+{
+    background-image: url(images/page_white_copy.png);
+}
+.contextMenu LI A.paste
+{
+    background-image: url(images/page_white_paste.png);
+}
+.contextMenu LI A.delete
+{
+    background-image: url(images/page_white_delete.png);
+}
+.contextMenu LI A.quit
+{
+    background-image: url(images/door.png);
+}
+
+/*
+* my
+*/
+
+.contextMenu LI a.has-childs
+{
+    background: url("images/arrow.gif") no-repeat scroll 137px center transparent;
+}
+
+.contextMenu LI.color .colorSelector
+{
+    position: absolute;
+    top: 1px;
+    left: 1px;
+}
+
+.contextMenu LI:hover ul.contextMenu
+{
+    display: block !important;
+    left: 150px;
+    position: absolute;
+    top: 0px;
+    width:auto;
+    min-width:150px;
+}
+
+.contextMenu.to-left LI:hover ul.contextMenu
+{
+    left:-152px;
+}
+
+.contextMenu li.to-status:nth-child(even)
+{
+    background-color: #fff;
+}

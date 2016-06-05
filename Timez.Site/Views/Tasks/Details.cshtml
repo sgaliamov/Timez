@@ -1,0 +1,40 @@
+﻿@model ITask
+@section ScriptsContent
+{
+	@Html.Raw(WebExtensions.CombresLink("TasksDetails"))
+}
+@{
+	ViewBag.Title = "Задача №" + Model.Id.ToString();
+	bool isArchive = (bool)ViewData.Get("isArchive");
+}
+@section TopLine
+{
+	<h1 class="page">
+		Задача №@Model.Id
+		@if (isArchive && ViewContext.GetUserRole().HasTheFlag(UserRole.Owner))
+  {	
+			@Html.ActionLink("Восстановить из архива", "Restore", new { boardId = Model.BoardId, id = Model.Id, isArchive = true }, new { @class = "restore" })
+  }
+	</h1>
+}
+<div class="page task-details">
+	<div class="line">
+		@Html.Raw(Model.Name.HtmlEncode().ToHtml())
+	</div>
+	@if (!Model.Description.IsNullOrEmpty())
+ {
+		<hr />
+		<div class="line description">
+			@Html.Raw(Model.Description.HtmlEncode().ToHtml())
+		</div>
+ }
+	<div class="creation-info">
+		Автор задачи:
+		@(ViewData.Get("CreatorUser") ?? "удален"), создано:
+		@ViewContext.ToUserTime(Model.CreationDateTime).DateTime.ToString()
+	</div>
+	<div id="task-comments" class="line">
+		@Html.Action("List", "Comments", new { isArchive })
+	</div>
+</div>
+@Html.Partial("Reformal")

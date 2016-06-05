@@ -1,0 +1,13 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	@Html.Raw(WebExtensions.CombresLink("siteCss"))
+	@Html.Raw(WebExtensions.CombresLink("siteJs"))
+</head>
+<body>
+	<div class="page">
+		@RenderBody()
+	</div>
+</body>
+</html>

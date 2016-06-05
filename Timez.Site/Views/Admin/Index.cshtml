@@ -1,0 +1,18 @@
+﻿@{
+	ViewBag.Title = "Админка";
+	Layout = "~/Views/Admin/_Layout.cshtml";
+}
+<div class="page">
+	<h2>
+		Админка</h2>
+	<p>
+		@Html.ActionLink("Info", "Info")
+	</p>
+	<p>
+		@Html.ActionLink("Clear cache", "ClearCache")
+	</p>
+	<h3>
+		Новости</h3>
+	<div id="last-news">@Html.Action("List")</div>
+	@Html.ActionLink("Создать", "Edit")
+</div>

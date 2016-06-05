@@ -1,0 +1,25 @@
+﻿@using Timez.BLL.Texts
+@model TextsUtility.TextsCollection
+@if (Model.Collection.Count != 0)
+{ 		
+	<ul>
+		@foreach (News news in Model.Collection.Select(text => new News(text)))
+  {
+			<li class="news">
+				@Html.DisplayFor(m => news)
+			</li>
+  }
+	</ul>
+	<div class="buttons">
+		@Html.Partial("Pager",
+		new Pager
+		{
+			ItemsOnPage = Model.ItemsOnPage,
+			PageIndex = Model.Page,
+			TotalItems = Model.Total
+		})
+		<script type="text/javascript">
+			Pager($("#last-news"), '@Url.Action("List", new { count = Model.ItemsOnPage })');
+		</script>
+	</div>
+}

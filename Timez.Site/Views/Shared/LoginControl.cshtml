@@ -1,0 +1,27 @@
+﻿<div id="login-panel">
+	<ul>
+		@if (Context.User.Identity.IsAuthenticated && ViewContext.GetCurrentUser().IsAdmin)
+  {
+			<li>
+				@Html.ActionLink("Админка", "Index", "Admin")</li>
+  }
+		@if (Context.User.Identity.IsAuthenticated)
+  {
+			<li>
+				@Html.ActionLink("Доски", "Index", "Boards", null, null)</li>
+			<li title="@ViewContext.GetCurrentUser().Nick">
+				@Html.ActionLink("Профиль", "Edit", "User")</li>
+			<li>
+				@Html.ActionLink("Выйти", "SignOut", "User")</li>
+  }
+  else
+  {
+	  string invitecode = ViewContext.RouteData.Values["id"] != null ? ViewContext.RouteData.Values["id"].ToString()
+							  : string.Empty;
+			<li>
+				@Html.ActionLink("Регистрация", "Register", "User", new { Id = invitecode }, null)</li>
+			<li>
+				@Html.ActionLink("Войти", "Login", "User", new { Id = invitecode }, null)</li>
+  }
+	</ul>
+</div>

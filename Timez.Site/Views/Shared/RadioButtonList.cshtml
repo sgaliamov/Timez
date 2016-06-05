@@ -1,0 +1,11 @@
+﻿@model TimezRadioButtonList
+<div class="radio-button-list">
+    @foreach (var item in Model.SelectList)
+    {
+        string id = Model.Name + item.Value;
+        <label for="@id">
+            <input type="radio" id="@id" name="@Model.Name" value="@item.Value"  class="required @Model.Class" 
+                title="@Model.Title" @Html.Raw(item.Selected ? "checked='checked'" : "") />
+            @item.Text</label><br />
+    }
+</div>

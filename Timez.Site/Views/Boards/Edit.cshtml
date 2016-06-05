@@ -1,0 +1,54 @@
+﻿@model IBoard
+@section TopLine
+{
+	<h1>
+		Редактирование доски "@Model.Name"
+	</h1>
+}
+@section ScriptsContent
+{
+	@Html.Raw(WebExtensions.CombresLink("BoardsEdit"))
+	<script type="text/javascript">
+		$(function () { $("#tabs").tabs({ cookie: { expires: 1} }); });
+	</script>
+}
+@{
+
+	ViewBag.Title = "Редактирование доски";
+	<div class="narrow-page">
+		<div id="tabs">
+			<ul>
+				<li><a href="#EditDetails">Основные настройки</a></li>
+				<li><a href="#ParticipantsListTab">Участники</a></li>
+				<li><a href="#BoardsProjects">Проекты</a></li>
+				<li><a href="#TasksStatuses">Статусы</a></li>
+				<li><a href="#ColorTab">Приоритеры</a></li>
+			</ul>
+			<div id="EditDetails" class="tab">
+				@Html.Partial("EditDetails")
+			</div>
+			<div id="ParticipantsListTab" class="tab">
+				@if (Model.OrganizationId.HasValue)
+	{
+					<div id="ParticipantsList">
+						@Html.Action("List", "Participant", Model.Id)
+					</div>
+	}
+	else
+	{ 
+					<i>Учасников можно добавить, если доска привязана к организации.</i>
+	}
+			</div>
+			<div id="BoardsProjects" class="tab">
+				@Html.Action("List", "Projects", Model.Id)
+			</div>
+			<div id="TasksStatuses" class="tab">
+				@Html.Action("Index", "TasksStatuses", Model.Id)
+			</div>
+			<div id="ColorTab" class="tab">
+				@Html.Action("EditColorList", Model.Id)
+			</div>
+		</div>
+	</div>
+	@Html.Partial("Reformal")
+}

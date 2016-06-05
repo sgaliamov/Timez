@@ -1,0 +1,17 @@
+﻿*.suo
+*.user
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esult*/
+*.pdb
+*.log
+*.etl
+/packages
+*.DotSettings
+*.dbmdl
+.vs/
+/Log/

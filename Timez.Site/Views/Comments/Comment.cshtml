@@ -1,0 +1,27 @@
+﻿@model ITasksComment
+<div class="comment">
+    <div class="comment-text" comment-id="@Model.Id">
+        <div class="author">
+            @Model.AuthorUser,
+            @ViewContext.ToUserTime(Model.CreationDate).DateTime.ToString()
+        </div>
+        @Html.Raw(Model.Comment.ToHtml())
+    </div>
+    @if (Model.ParentId.HasValue)
+    {
+        <a href="#parrent-@Model.ParentId.Value-@Model.Id" class="left parrent-toggle">Ответ
+            на...</a>
+        <div class="parrent-comment" id="parrent-@Model.ParentId.Value-@Model.Id">
+            @Html.Raw(Model.ParentComment)
+        </div>        
+    }
+    <div class="comment-replay-container buttons">
+        @if (ViewContext.GetCurrentUser().Id == Model.AuthorUserId || ViewContext.GetUserRole().HasTheFlag(UserRole.Owner))
+        {
+            @Ajax.ActionLink("Удалить", "Delete",
+                new { Model.BoardId, Model.Id, Model.TaskId, isArchive = ViewContext.CurrentTaskInArchive() },
+                new CommonAjaxOptions("task-comments"), new { @class = "red delete-comments" })
+        }
+        <a href="#" class="comment-replay">Ответить</a>
+    </div>
+</div>

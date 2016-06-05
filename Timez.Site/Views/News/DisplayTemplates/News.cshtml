@@ -1,0 +1,8 @@
+﻿@model News
+<h3>
+	@Html.ActionLink(Model.Title, "Details", "News", new { Model.Id }, null)
+</h3>
+@Html.Raw(Model.Brief.ToHtml())
+<div class="creation-info">
+	@ViewContext.ToUserTime(Model.CreationDateTime.Value).DateTime
+</div>

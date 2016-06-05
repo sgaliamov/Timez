@@ -1,0 +1,39 @@
+﻿@model ITasksStatus
+<div class="board-settings">
+    @using (Ajax.BeginForm(new CommonAjaxOptions("StatusesTable")))
+    {
+        <p>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "focused" })
+        </p>
+        if (!Model.IsBacklog)
+        {
+        <h3>
+            Настройки</h3>
+        <fieldset>
+            <p>
+                @Html.TextBoxFor(m => m.MaxTaskCountPerUser,
+            new
+            {
+                maxlength = 4,
+                style = "width: 33px"
+            })
+                @Html.LabelFor(m => m.MaxTaskCountPerUser)
+            </p>
+            <p>
+                @Html.CheckBoxFor(m => m.PlanningRequired)
+                @Html.LabelFor(m => m.PlanningRequired)
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.MaxPlanningTime, new { maxlength = 4, style = "width: 33px" })
+                @Html.LabelFor(m => m.MaxPlanningTime)
+            </p>
+        </fieldset>
+        } 
+        <center>
+            <input type="submit" value="Сохранить" class="save-button" />
+            <input type="button" value="Отмена" class="close-button" />
+        </center>
+        @Html.ValidationSummary()        
+    }
+</div>

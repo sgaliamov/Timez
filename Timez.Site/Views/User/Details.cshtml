@@ -1,0 +1,20 @@
+﻿@model IUser
+@{
+	ViewBag.Title = "Профиль";
+}
+@section TopLine
+{
+	<h1>
+		Профиль</h1>
+}
+<div class="narrow-page">
+	<p>
+		Пользователь:
+		@Html.Encode(Model.Nick)
+	</p>
+	<p>
+		Мыло:
+		@Html.Encode(Model.EMail)
+	</p>
+</div>
+@Html.Partial("Reformal")

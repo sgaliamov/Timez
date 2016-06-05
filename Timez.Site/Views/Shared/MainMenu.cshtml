@@ -1,0 +1,31 @@
+﻿@helper GetItem(string url, string text)
+    {
+        bool selected = url.ToUpper() == Request.Url.PathAndQuery.ToUpper();
+    
+    <li><a @Html.Raw(selected ? "class='selected'" : "") href='@Html.Raw(url)'>@text</a></li>
+}
+@{
+    int? id = ViewContext.GetCurrentBoardId();
+
+    if (id.HasValue)
+    {
+        var routeData = new { Id = id.Value };
+        UserRole? role = ViewContext.GetUserRole();
+    <ul id="MainMenu">
+        @GetItem(Url.Action("Index", "Kanban", routeData), "Канбан")
+        @GetItem(Url.Action("Board", "Tasks", routeData), "Таблица")
+        @if (role.HasValue)
+        {
+            if (role.Value.HasAnyFlag(UserRole.ExecutorAndOwnerAndCustomer))
+            { 
+                @GetItem(Url.Action("Index", "Log", routeData), "Журнал")
+                @GetItem(Url.Action("Archive", "Tasks", routeData), "Архив")
+            }
+            if (role.Value.HasTheFlag(UserRole.Owner))
+            { 
+                @GetItem(Url.Action("Edit", "Boards", routeData), "Настройки") 
+            }
+        }
+    </ul>
+    }
+}

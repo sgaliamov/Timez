@@ -1,0 +1,38 @@
+﻿@using Timez.Entities;
+@using Timez.Helpers;
+@model IEnumerable<IProject>
+@using (Ajax.BeginForm("Settings", "Projects",
+    new CommonAjaxOptions("user-project-settings")))
+{
+    var proj = Model.FirstOrDefault();
+    if (proj != null)
+    {
+    <p>
+        <b>@Html.Label("project-id", "Проект:")</b>
+        <select name="project-id" id="project-id">
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id" board-id="@item.BoardId" >@item.Name</option>
+            }
+        </select>
+        @Html.Hidden("boardId", proj.BoardId)
+    </p>
+    <div id="user-project-settings">
+        @Html.Action("Settings", new { boardId = proj.BoardId, id = proj.Id })
+    </div>    
+    <center>
+        <input type="submit" value="Сохранить" name="submit" />
+        <input type="submit" value="Отмена" name="cancel" />
+    </center>
+    <script type="text/javascript">
+        $(function () {
+            $("#project-id").change(function () {
+                var select = $(this);
+                var opt = select.children("option:selected");
+                $("#boardId").val(opt.attr("board-id"));
+                select.submit();
+            });
+        });
+    </script>
+    }
+}

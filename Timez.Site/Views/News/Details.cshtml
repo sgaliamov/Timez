@@ -1,0 +1,13 @@
+﻿@model News
+@section TopLine
+{
+	<h1 class="narrow-page">
+		@Html.DisplayFor(m => m.Title)
+	</h1>
+}
+<div class="narrow-page">
+	@Html.Raw(Model.Content.ToHtml())
+	<div class="creation-info">
+		@ViewContext.ToUserTime(Model.CreationDateTime.Value).DateTime
+	</div>
+</div>

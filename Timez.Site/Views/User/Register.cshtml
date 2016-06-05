@@ -1,0 +1,51 @@
+﻿@model List<SelectListItem>
+@{
+	ViewBag.Title = "Регистрация";
+}
+@section TopLine
+{
+	<h1 class="very-narrow-page">
+		Регистрация</h1>
+}
+@section ScriptsContent
+{
+	<script type="text/javascript">
+		$(function () { $("#timezone").val(-new Date().getTimezoneOffset()); });
+	</script>
+}
+<div class="very-narrow-page">
+	<h2>
+		Запоните форму
+	</h2>
+	@using (Html.BeginForm())
+ {
+		<p>
+			<label for="email">
+				Email:</label>
+			@Html.TextBox("email", null, new { @class = "required email focused" })
+			@Html.ValidationMessage("email")
+		</p>
+		<p>
+			<label for="password">
+				Пароль:</label>
+			@Html.Password("password", null, new { @class = "required" })
+			@Html.ValidationMessage("password")
+		</p>
+		<p>
+			<label for="confirmPassword">
+				Подтверждение пароля:</label>
+			@Html.Password("confirmPassword", null, new { @class = "required" })
+			@Html.ValidationMessage("confirmPassword")
+		</p>
+		<p>
+			<label for="timezone">
+				Временная зона:
+			</label>
+			@Html.DropDownList("timezone", Model)
+		</p>
+		<div class="center">
+			<input type="submit" value="Зарегистрироваться" />
+		</div>
+ }
+</div>
+@Html.Partial("Reformal")

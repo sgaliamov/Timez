@@ -1,0 +1,16 @@
+﻿@model IProject
+
+<div class="board-settings">
+    @using (Ajax.BeginForm(new CommonAjaxOptions("BoardsProjects")))
+    {
+        <p>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "focused" })
+        </p>        
+        <center>
+            <input type="submit" value="Сохранить" class="save-button" />
+            <input type="button" value="Отмена" class="close-button" />
+        </center>
+        @Html.ValidationSummary()        
+    }
+</div>

@@ -1,0 +1,1434 @@
+﻿*
+{
+	padding: 0px;
+	margin: 0px;
+	border: 0px none;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	outline: 0px none;
+	border-collapse: collapse;
+	line-height: 20px;
+}
+
+html
+{
+	height: 100%;
+	background: #fff;
+}
+
+body
+{
+	height: 100%;
+	min-height: 100%;
+	background: #E5EFFD;
+}
+
+h1
+{
+	font-size: 18px;
+	line-height: 20px;
+	margin: 0 auto;
+	width: 623px;
+	color: #222;
+	font-weight: normal;
+}
+
+h1.page
+{
+	min-height: inherit;
+}
+
+h1.very-narrow-page
+{
+	width: 303px;
+}
+
+h1 .restore
+{
+	float: right;
+	line-height: 20px;
+}
+
+h2
+{
+	border-bottom: 1px solid;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	margin-bottom: 5px;
+	padding-top: 20px;
+	width: 100%;
+}
+
+h3
+{
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+h4
+{
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+label
+{
+	display: inline-block;
+	font-style: italic;
+	margin-bottom: 2px;
+	font-size: 13px;
+	font-weight: inherit;
+}
+
+a
+{
+	text-decoration: none;
+	color: #0066CC;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+b
+{
+	font-weight: bold;
+}
+
+p, center, .line
+{
+	margin-bottom: 10px;
+}
+
+p
+{
+	padding-right: 2px;
+}
+
+sup
+{
+	font-size: 9px;
+	vertical-align: top;
+}
+
+/* Кнопки
+---------------------------------------------------- */
+
+input[type=text], input[type=password]
+{
+	border: solid #333 1px;
+	width: 100%;
+	padding: 1px 0px;
+	height: 16px;
+	background: #fff;
+	border-collapse: separate;
+	vertical-align: top;
+}
+
+button, input[type=submit], input[type=button], a.button, .ui-button, .circle-button
+{
+	cursor: pointer;
+	background: #D4D4D4 url(Images/back_gray.png) repeat-x 0 0;
+	text-shadow: #fff 1px 1px 1px;
+	text-align: center;
+	color: #000;
+	display: inline-block;
+	vertical-align: top;
+	border: solid #333 1px;
+	height: 20px;
+	white-space: nowrap;
+	padding: 0 4px;
+}
+
+button span
+{
+	line-height: 16px;
+	vertical-align: top;
+}
+
+a.button
+{
+	text-decoration: none;
+	color: #000;
+	height: 16.1px;
+	line-height: 17.1px;
+	padding: 0px 5.5px 2px;
+}
+
+input[type=submit]:hover, input[type=button]:hover, a.button:hover, .ui-button:hover, button:hover
+{
+	background: #B2E0F9 url(Images/back_light_blue.png) repeat-x 0 0;
+}
+
+.square
+{
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+.circle-button
+{
+	position: relative;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: 0 none; /*box-shadow: 0 0 0 1px #000; 	border-radius: 10px;*/
+	background: transparent url(Images/cirlce-button.png) no-repeat 0px 0;
+}
+
+.circle-button:hover
+{
+	background: transparent url(Images/cirlce-button.png) no-repeat -20px 0;
+}
+
+.circle-button .ui-icon
+{
+	position: absolute;
+	top: 1px;
+	left: 2px;
+}
+
+/**/
+
+input[type="checkbox"]
+{
+	vertical-align: text-bottom;
+}
+
+select
+{
+	background: none repeat scroll 0 0 white;
+	border: 1px solid #333333;
+	height: 20px;
+	margin-right: 5px;
+	vertical-align: top;
+	width: 100%;
+}
+
+textarea
+{
+	border: solid #333 1px;
+	width: 100%;
+	padding: 1px 0px;
+	min-height: 140px;
+}
+
+ol
+{
+	margin-left: 20px;
+}
+
+ul li
+{
+	list-style-type: none;
+}
+
+hr
+{
+	border: 1px inset #808080;
+}
+
+/*
+*
+*/
+
+.ui-datepicker
+{
+	display: none;
+}
+
+/* Styles for validation helpers
+---------------------------------------------------- */
+input.input-validation-error, input.error, textarea.error, textarea.input-validation-error
+{
+	border: 1px solid #ff0000;
+	background-color: #ffeeee;
+	-webkit-box-shadow: 0 0 5px #f00;
+	-moz-box-shadow: 0 0 5px #f00;
+	box-shadow: 0 0 5px #f00;
+}
+
+.field-validation-error, label.error
+{
+	color: #ff0000;
+	font-style: italic;
+}
+
+.validation-summary-errors
+{
+	color: #ff0000;
+	clear: both;
+}
+
+.validation-summary-errors li
+{
+	line-height: 20px;
+}
+
+.field-validation-valid
+{
+	display: none;
+}
+
+.validation-summary-valid li
+{
+	line-height: 20px;
+	margin-top: 10px;
+}
+
+.MultiFile-wrap
+{
+	display: inline-block;
+}
+
+.buttons
+{
+	text-align: right;
+	padding-right: 0;
+}
+
+.buttons .left
+{
+	float: left;
+	line-height: 22px;
+	text-align: left;
+}
+
+.buttons .left.button
+{
+	line-height: 18px;
+}
+
+
+/* .table
+---------------------------------------------------- */
+.table
+{
+	margin-bottom: 10px;
+	border: 1px solid #333;
+	width: 100%;
+	background-color: #fff;
+}
+
+.table tr
+{
+	/*padding-bottom: 2px;/**/
+}
+
+.table tbody tr:nth-child(odd)
+{
+	background-color: #EBEFF9;
+}
+
+.table tbody tr:hover
+{
+	background: #ADFF2F;
+}
+
+.table th
+{
+	background-color: #73C7FA;
+	border-bottom: 1px solid #333333;
+	color: #FFFFFF;
+	padding: 6px 3px 3px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.table th.button
+{
+	width: 18px;
+}
+
+.table td
+{
+	border: none;
+	text-align: center;
+	line-height: 20px;
+	padding: 2px;
+}
+
+.table td.dragHandle
+{
+	background-image: url(images/updown2.gif);
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	cursor: move;
+	width: 18px;
+}
+
+
+/* list-table
+---------------------------------------------------- */
+.list-table
+{
+	margin-bottom: 10px;
+}
+
+.list-table th
+{
+	text-align: right;
+	padding-right: 5px;
+}
+
+.list-table tr
+{
+	height: 20px;
+}
+
+.list-table td
+{
+	text-align: left;
+	width: 40px;
+}
+
+/* settings-table
+---------------------------------------------------- */
+.settings-table
+{
+	margin-bottom: 10px;
+}
+
+.settings-table th
+{
+	text-align: right;
+	padding-right: 5px;
+}
+
+.settings-table td
+{
+	text-align: left;
+	padding-right: 5px;
+}
+
+.settings-table .label
+{
+}
+
+.settings-table .time input
+{
+	width: 28px;
+	text-align: right;
+}
+
+.settings-table .butt
+{
+	width: 20px;
+	cursor: pointer;
+}
+
+.red
+{
+	color: Red !important;
+}
+
+.page
+{
+	margin: 0 auto;
+	width: 1000px;
+	min-height: 400px;
+}
+
+.narrow-page
+{
+	margin: 0 auto;
+	width: 620px;
+}
+
+.narrow-page #tabs
+{
+	margin: -13px 0 auto;
+	background: none repeat scroll 0 0 transparent;
+}
+
+.very-narrow-page
+{
+	margin: 0 auto;
+	width: 300px;
+}
+
+
+/* крутилки
+---------------------------------------------------- */
+#ajaxloader
+{
+	background: url(images/main-ajax-loader.gif) no-repeat scroll center center transparent;
+	color: #FFFFFF; /*display: none;/**/
+	font-family: monospace;
+	font-size: 14px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 24px;
+	position: fixed;
+	right: 314px;
+	text-align: center;
+	top: -24px;
+	vertical-align: middle;
+	width: 126px;
+	z-index: 16777271;
+	display: block;
+	visibility: visible;
+}
+
+/* описания разныз элементов
+---------------------------------------------------- */
+#page
+{
+	min-width: 1000px;
+	background-color: transparent;
+	height: 100%;
+}
+
+#header
+{
+	height: 40px;
+	position: relative;
+	border-bottom: 1px solid #333;
+	background-color: #73C7FA;
+}
+
+#logo
+{
+	color: #fff;
+	font-family: monospace;
+	font-size: 26px;
+	font-weight: bold;
+	line-height: 40px;
+	text-decoration: none;
+	vertical-align: middle;
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	text-shadow: 0px 1px 1px #333;
+}
+
+#main
+{
+	border-top: 3px solid #333;
+	padding: 10px 0px;
+	background: url(Images/body-bg.png) repeat-x scroll left top #E5EFFD;
+	min-height: 500px;
+}
+
+#footer
+{
+	border-top: 1px solid #333;
+	width: 100%;
+	height: 65px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 65px;
+	color: #333;
+	position: fixed;
+	bottom: 0;
+	background-color: #E5EFFD;
+}
+
+#footer *
+{
+	color: #333;
+}
+
+#login-panel
+{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	height: 30px;
+}
+#login-panel ul
+{
+	display: inline-block;
+}
+#login-panel b
+{
+	color: #FFFFFF;
+	display: inline-block;
+	padding-top: 4px;
+	vertical-align: top;
+}
+#login-panel li
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: #333333;
+	border-left: 1px solid #333333;
+	border-style: none solid solid;
+	border-width: medium 2px 2px 1px;
+	float: left;
+	list-style-type: none;
+	margin-left: 8px;
+	padding: 4px 8px;
+}
+
+
+#login-panel li a
+{
+	text-decoration: none;
+	color: #333;
+}
+
+#login-panel li a:hover
+{
+	color: #0066CC;
+}
+
+#top-line
+{
+	padding: 8px 10px;
+	min-height: 20px;
+	overflow: hidden;
+	background: #fff;
+}
+
+#MainMenu
+{
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 12px;
+	width: 620px;
+}
+
+#MainMenu li
+{
+	float: left;
+	background: #fff;
+	margin-right: 8px;
+	list-style-type: none;
+	padding: 4px 8px;
+	border: 1px #333 solid;
+	border-bottom: none;
+}
+
+#MainMenu li a
+{
+	text-decoration: none;
+	color: #000;
+}
+
+#MainMenu li a.selected
+{
+	font-weight: bold;
+}
+
+#MainMenu li a:hover
+{
+	color: #0066CC;
+	text-shadow: none;
+}
+
+
+#new-color
+{
+	float: right;
+}
+
+#new-color td
+{
+	padding-left: 5px;
+}
+
+/* Time picker
+---------------------------------------------------- */
+#CP_hourcont
+{
+	padding: 0px;
+	position: absolute;
+	border: 1px dashed #bbbbbb;
+	background-color: #dddddd;
+	display: none;
+}
+
+#CP_minutecont
+{
+	background-color: #dddddd;
+	padding: 0px;
+	position: absolute;
+	width: 45px;
+	border: 1px dashed #cccccc;
+	display: none;
+}
+
+.CP_hour
+{
+	padding: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	white-space: nowrap;
+	cursor: pointer;
+	width: 35px;
+	margin: 1px;
+	background-color: #eeeeee;
+}
+
+.CP_minute
+{
+	padding: 1px;
+	background-color: #eeeeee;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	white-space: nowrap;
+	cursor: pointer;
+	width: auto;
+	margin: 1px;
+}
+
+.CP_over
+{
+	background-color: #ffffff;
+}
+
+.alternative-login h2
+{
+	margin-top: 50px;
+}
+
+.alternative-login .login-button
+{
+	cursor: pointer;
+}
+
+/* Разное
+---------------------------------------------------- */
+.floatleft
+{
+	float: left;
+}
+
+.hidden
+{
+	display: none;
+}
+
+.colorSelector
+{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	background: url(images/select.png) 0 0 no-repeat;
+}
+.colorSelector > *
+{
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	background: #fff;
+}
+
+.center
+{
+	text-align: center;
+}
+
+.dropdown-checklist
+{
+	height: 20px;
+}
+
+.start-page
+{
+	margin: 0 auto;
+	width: 780px;
+}
+
+.start-page .left
+{
+	float: left;
+	width: 380px;
+	margin-right: 10px;
+	margin-top: 25px;
+}
+
+.start-page .left img
+{
+	margin-right: 10px;
+	margin-top: 5px;
+	float: left;
+	width: 190px;
+	height: 114px;
+}
+
+.start-page .right
+{
+	width: 380px;
+	float: right;
+	margin-top: 25px;
+}
+
+.news
+{
+	margin-bottom: 20px;
+}
+
+
+/* kanban
+---------------------------------------------------- */
+#kanban
+{
+}
+
+#kanban table
+{
+	width: 100%;
+}
+
+#kanban select
+{
+	display: none;
+}
+
+#kanban .tasks ul
+{
+	min-height: 100px;
+}
+
+#kanban .status
+{
+	min-width: 100px;
+}
+
+#kanban .actions
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	position: absolute;
+	right: 0;
+	top: 1px; /*width: 60px;*/
+	height: 20px;
+}
+
+#kanban .header
+{
+	border-bottom: 1px solid #333;
+	color: #333333;
+	height: 20px;
+	margin: 0 10px;
+	position: relative;
+	white-space: nowrap;
+}
+
+#kanban .header .over
+{
+	position: absolute;
+	right: 68px;
+	top: 0;
+	background: url(images/status-header-bg.png) no-repeat 0 0 transparent;
+	width: 40px;
+	height: 20px;
+}
+
+#kanban .sub-header
+{
+	position: relative;
+	margin: 1px 10px 0;
+}
+
+#kanban .sub-header .paging
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#kanban .sub-header .info
+{
+	font-size: 10px;
+	color: #333;
+	background-color: #fff;
+	display: block;
+	height: 14px;
+}
+#kanban .sub-header i
+{
+	font-size: 10px;
+	color: #333;
+}
+#kanban .pager
+{
+	height: 15px;
+}
+
+#kanban .pager span
+{
+	font-size: 10px;
+	color: #333;
+}
+
+#kanban .pager b
+{
+	font-size: 10px;
+	text-decoration: underline;
+}
+
+#kanban .pager b.selected
+{
+	text-decoration: none;
+	color: #000;
+}
+
+#kanban .bottom-line
+{
+	margin: 8px 10px 0;
+}
+
+#kanban .name
+{
+	font-family: monospace;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000;
+}
+
+#kanban td
+{
+	border-right: 1px dashed #333;
+	vertical-align: top;
+}
+
+#kanban td:last-child
+{
+	border-right: none;
+}
+
+.kanban-filter
+{
+	width: 100%;
+}
+
+.kanban-filter td
+{
+	padding-right: 10px;
+	width: 150px;
+}
+
+.kanban-filter .last
+{
+	width: 130px;
+	padding: 0;
+	white-space: nowrap;
+}
+
+.kanban-filter .last .reset
+{
+	padding: 0;
+}
+
+.kanban-filter input
+{
+	/* padding-top: 0; padding-bottom: 0; */
+}
+
+.collapsed-status
+{
+	display: none;
+	text-align: center;
+	width: 30px;
+}
+
+/* tasks-table
+---------------------------------------------------- */
+#tasks-table th
+{
+	text-align: left;
+	vertical-align: top;
+}
+
+#tasks-table td
+{
+	text-align: left;
+	vertical-align: top;
+}
+
+/* Pager
+---------------------------------------------------- */
+.pager
+{
+	white-space: nowrap;
+	height: 18px;
+	display: inline-block;
+}
+
+.pager b
+{
+	cursor: pointer;
+	color: #333;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.pager b:hover, .pager b.selected
+{
+	text-decoration: none;
+	color: #000;
+}
+
+.pager b.arrow
+{
+	text-decoration: none;
+}
+
+/* Tasks card
+---------------------------------------------------- */
+.task-wrapper
+{
+	list-style: none;
+}
+
+.task-wrapper-highlight
+{
+	border: 1px dotted;
+	visibility: visible;
+	height: 68px;
+	margin: 8px 10px 0 8px;
+	list-style: none;
+	background: #fbf9ee;
+}
+
+.task
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: #333333;
+	border-style: solid;
+	border-width: 1px 2px 2px 1px;
+	margin: 8px 9px 0;
+	padding: 3px 6px;
+	position: relative;
+	cursor: -moz-grab;
+}
+
+.task *
+{
+	line-height: 14px;
+}
+
+.task a
+{
+	font-size: 11px;
+}
+
+.task .project
+{
+	border-bottom: 1px dotted #000;
+	color: #333;
+	font-size: 10px;
+	display: inline-block;
+}
+
+.task .user a
+{
+	position: absolute;
+	top: 4px;
+	right: 25px;
+	text-decoration: none;
+	color: #333;
+	font-size: 10px;
+	background: #fff;
+}
+
+.task .user a:hover
+{
+	border-bottom: 1px dotted #000;
+}
+
+.task .color
+{
+	height: 10px;
+	position: absolute;
+	right: 7px;
+	top: 7px;
+	width: 10px;
+	border: 1px solid #333;
+}
+
+.task .title
+{
+	background: none repeat scroll 0 0 WhiteSmoke;
+	font-size: 11px;
+	margin: 5px 0;
+	padding: 3px;
+	position: relative;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.task .change-time
+{
+	color: #333;
+	font-size: 10px;
+}
+
+.task .more
+{
+	color: #333;
+	font-size: 10px;
+	cursor: pointer;
+}
+.task .more:hover
+{
+	border-bottom: 1px dotted #000;
+}
+
+.task .more-description
+{
+	background: none repeat scroll 0 0 WhiteSmoke;
+	font-size: 11px;
+	margin: 5px 0;
+	padding: 3px;
+	vertical-align: middle;
+	overflow: hidden;
+	display: none;
+}
+
+.task .bottom
+{
+	position: relative;
+}
+
+.task .time
+{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.task .time span
+{
+	color: #333;
+	font-size: 10px;
+}
+
+.task .time img
+{
+	left: -14px;
+	position: absolute;
+	top: 2px;
+	width: 12px;
+	height: 12px;
+}
+
+/* task-settings
+---------------------------------------------------- */
+.task-settings
+{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.task-settings .task-settings-menu li
+{
+	border: 1px solid #333333;
+	border-bottom: 0 none;
+	top: 1px;
+}
+.task-settings .tab
+{
+	border: 1px solid #333333;
+	padding: 10px;
+}
+
+.task-settings .selectable-list
+{
+	position: relative;
+}
+
+.task-settings .selectable-list li
+{
+	display: inline-block;
+	line-height: 20px;
+	padding: 0 5px;
+}
+
+.task-settings .selectable-list li span
+{
+}
+
+.task-settings .selectable-list li:hover
+{
+	background-color: #ADFF2F;
+	cursor: pointer;
+}
+
+.task-settings .selectable-list li.selected
+{
+	background-color: #73C7FA;
+	color: #fff;
+}
+
+.radio-button-list
+{
+	width: 145px;
+	overflow: hidden;
+}
+
+/* files
+---------------------------------------------------- */
+.files
+{
+	margin-bottom: 100px;
+}
+
+.files li
+{
+	margin-bottom: 4px;
+}
+
+/* task-popup
+---------------------------------------------------- */
+#task-popup
+{
+	display: none;
+	max-height: 600px;
+}
+
+#task-name
+{
+	min-height: 40px;
+}
+
+#task-description
+{
+	min-height: 140px;
+}
+
+.loader
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(images/ajax-loader.gif) no-repeat scroll center center #FFFFFF;
+	height: 100%;
+	width: 100%;
+	opacity: 0.5;
+}
+
+/* страница описания задачи
+---------------------------------------------------- */
+.creation-info
+{
+	text-align: right;
+	font-size: 10px;
+	font-style: italic;
+	color: #778398;
+}
+
+.task-details .description
+{
+	background-color: #fff;
+	padding: 10px;
+}
+
+/* Event history
+---------------------------------------------------- */
+.log-table
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.log-table th
+{
+	text-align: left;
+}
+
+h3 .clear-log
+{
+	float: right;
+	line-height: 20px;
+	font-weight: normal;
+}
+
+.eventHistory-filter tr td
+{
+	padding-right: 10px;
+}
+
+.event-data .event-error-row td
+{
+	background-color: #F5B5D7;
+}
+
+.event-data .event-warning-row td
+{
+	background-color: #F2F07C;
+}
+
+.event-data td
+{
+	text-align: left;
+	vertical-align: top;
+}
+
+#log-statistics
+{
+	margin: 10px;
+}
+
+#log-statistics .user
+{
+	font-weight: bold;
+	text-align: right;
+}
+
+/* Редактирование насроек
+---------------------------------------------------- */
+.board-settings fieldset label
+{
+	vertical-align: middle;
+	margin-bottom: 0;
+}
+
+.board-settings fieldset div
+{
+	margin-bottom: 10px;
+}
+
+.board-settings fieldset ul
+{
+	margin-left: 17px;
+	margin-top: 5px;
+}
+
+.board-settings fieldset ul li
+{
+	list-style-type: disc;
+}
+
+.board-settings center
+{
+	margin-bottom: 0;
+}
+
+.board-settings .validation-summary-valid
+{
+	margin: 0;
+}
+
+.board-settings .tip
+{
+	color: #778398;
+	font-size: 11px;
+	line-height: 11px;
+	height: 11px;
+	text-align: right;
+}
+
+.time-requered-dialog input
+{
+	width: 26px;
+	text-align: right;
+}
+
+/* Комментирование задач
+---------------------------------------------------- */
+#task-comments
+{
+}
+
+.comment
+{
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.comment .author
+{
+	color: #778398;
+	font-size: 10px;
+	font-style: italic;
+	margin-bottom: 2px;
+}
+
+.comment-text
+{
+	margin-bottom: 5px;
+}
+
+.comment:hover, .comment.selected
+{
+	background: #e8e8e8;
+}
+
+.comment:hover .comment-replay-container, .comment.selected .comment-replay-container
+{
+	visibility: visible;
+}
+
+.comment-replay-container
+{
+	visibility: hidden;
+}
+
+#new-comment-container
+{
+	margin: 5px 0 0 0;
+	padding-right: 2px;
+}
+
+#new-comment-header
+{
+	color: #0066CC;
+	border-bottom-style: dashed;
+	cursor: pointer;
+}
+
+#new-comment-header:hover
+{
+	border-bottom-style: solid;
+}
+
+.comment .parrent-comment
+{
+	border: 5px solid #FFFFFF;
+	display: none;
+	font-style: italic;
+	margin: 10px 0 10px 50px;
+	padding: 5px;
+}
+
+.comment .parrent-toggle
+{
+	color: #0066CC;
+	font-size: 11px;
+	font-style: italic;
+	text-decoration: none;
+}
+
+/* Организации и тарифы
+---------------------------------------------------- */
+.organization-list td, .organization-list th
+{
+	text-align: left;
+}
+
+.tariffs
+{
+	width: 100%;
+	margin: 20px 0;
+}
+
+.tariffs td
+{
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.tariffs th
+{
+	padding-bottom: 10px;
+}
+
+#link-line
+{
+	display: block;
+	margin: 10px 0;
+}

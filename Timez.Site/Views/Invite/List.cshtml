@@ -1,0 +1,35 @@
+﻿@model IEnumerable<IOrganization>
+@if (Model != null && Model.Any())
+{
+	<h2>
+		Приглашения</h2>
+	<table class="table">
+		<tr>
+			<th style="text-align: left">
+				Организация
+			</th>
+			<th class="button">
+			</th>
+			<th class="button">
+			</th>
+		</tr>
+		@foreach (var item in Model)
+  {
+			<tr>
+				<td style="text-align: left">
+					@item.Name
+				</td>
+				<td>
+					<span class="circle-button">
+						@Html.ActionLink("˅", "AcceptInvite", "Invite", new { item.Id }, new { @class = "ui-icon ui-icon-check", style = "color: Green;", title = "Принять приглашение" })
+					</span>
+				</td>
+				<td>
+					<span class="circle-button">
+						@Html.ActionLink("X", "DeclineInvite", "Invite", new { item.Id }, new { @class = "ui-icon ui-icon-close red", title = "Отклонить приглашение" })
+					</span>
+				</td>
+			</tr>
+  }
+	</table>
+}

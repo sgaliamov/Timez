@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="galyamov_timez" Class="TimezDataContext" Modifier="Sealed" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Boards" Member="Boards" AccessModifier="Internal">
+    <Type Name="Board" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RefreshPeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrganizationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Board_BoardsColor" Member="BoardsColors" ThisKey="Id" OtherKey="BoardId" Type="BoardsColor" />
+      <Association Name="Board_BoardsUser" Member="BoardsUsers" ThisKey="Id" OtherKey="BoardId" Type="BoardsUser" />
+      <Association Name="Board_Project" Member="Projects" ThisKey="Id" OtherKey="BoardId" Type="Project" />
+      <Association Name="Board_ProjectsUser" Member="ProjectsUsers" ThisKey="Id" OtherKey="BoardId" Type="ProjectsUser" />
+      <Association Name="Board_Task" Member="Tasks" ThisKey="Id" OtherKey="BoardId" Type="Task" />
+      <Association Name="Board_TasksArchive" Member="TasksArchives" ThisKey="Id" OtherKey="BoardId" Type="TasksArchive" />
+      <Association Name="Board_TasksStatus" Member="TasksStatus" ThisKey="Id" OtherKey="BoardId" Type="TasksStatus" />
+      <Association Name="Organization_Board" Member="Organization" ThisKey="OrganizationId" OtherKey="Id" Type="Organization" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsersInvites" Member="UsersInvites" AccessModifier="Internal">
+    <Type Name="UsersInvite" AccessModifier="Internal">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EMail" Type="System.String" DbType="NVarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="InviteCode" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="OrganizationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_UsersInvite" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BoardsColors" Member="BoardsColors" AccessModifier="Internal">
+    <Type Name="BoardsColor" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Color" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="BoardsColor_Task" Member="Tasks" ThisKey="Id" OtherKey="ColorId" Type="Task" />
+      <Association Name="BoardsColor_TasksArchive" Member="TasksArchives" ThisKey="Id" OtherKey="ColorId" Type="TasksArchive" />
+      <Association Name="Board_BoardsColor" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BoardsUsers" Member="BoardsUsers" AccessModifier="Internal">
+    <Type Name="BoardsUser" AccessModifier="Internal">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Board_BoardsUser" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_BoardsUser" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventHistory" Member="EventHistories" AccessModifier="Internal">
+    <Type Name="EventHistory" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventDateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="TaskId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserNick" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Event" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="EventType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Organizations" Member="Organizations" AccessModifier="Internal">
+    <Type Name="Organization" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="TariffId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsFree" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Css" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Logo" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="WithdrawalDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
+      <Column Name="IsBlocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InviteCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Organization_Board" Member="Boards" ThisKey="Id" OtherKey="OrganizationId" Type="Board" />
+      <Association Name="Organization_OrganizationUser" Member="OrganizationUsers" ThisKey="Id" OtherKey="OrganizationId" Type="OrganizationUser" />
+      <Association Name="Tariff_Organization" Member="Tariff" ThisKey="TariffId" OtherKey="Id" Type="Tariff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrganizationUsers" Member="OrganizationUsers" AccessModifier="Internal">
+    <Type Name="OrganizationUser" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrganizationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsApproved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Organization_OrganizationUser" Member="Organization" ThisKey="OrganizationId" OtherKey="Id" Type="Organization" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_OrganizationUser" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects" Member="Projects" AccessModifier="Internal">
+    <Type Name="Project" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Project_ProjectsUser" Member="ProjectsUsers" ThisKey="Id" OtherKey="ProjectId" Type="ProjectsUser" />
+      <Association Name="Project_Task" Member="Tasks" ThisKey="Id" OtherKey="ProjectId" Type="Task" />
+      <Association Name="Project_TasksArchive" Member="TasksArchives" ThisKey="Id" OtherKey="ProjectId" Type="TasksArchive" />
+      <Association Name="Board_Project" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectsUsers" Member="ProjectsUsers" AccessModifier="Internal">
+    <Type Name="ProjectsUser" AccessModifier="Internal">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ReciveEMail" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Board_ProjectsUser" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" />
+      <Association Name="Project_ProjectsUser" Member="Project" ThisKey="ProjectId" OtherKey="Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_ProjectsUser" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tariffs" Member="Tariffs" AccessModifier="Internal">
+    <Type Name="Tariff" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="BoardsCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProjectsPerBoard" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmployeesCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Flags" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Tariff_Organization" Member="Organizations" ThisKey="Id" OtherKey="TariffId" Type="Organization" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tasks" Member="Tasks" AccessModifier="Internal">
+    <Type Name="Task" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="StatusChangeDateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="PlanningTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ColorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ColorHEX" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ColorName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ColorPosition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExecutorUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExecutorNick" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExecutorEmail" Type="System.String" DbType="NVarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="TaskStatusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskStatusPosition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskStatusName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Task_TasksArchive" Member="TasksArchives" ThisKey="Id" OtherKey="Id" Type="TasksArchive" />
+      <Association Name="Task_TasksComment" Member="TasksComments" ThisKey="Id" OtherKey="TaskId" Type="TasksComment" />
+      <Association Name="Board_Task" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" />
+      <Association Name="BoardsColor_Task" Member="BoardsColor" ThisKey="ColorId" OtherKey="Id" Type="BoardsColor" IsForeignKey="true" />
+      <Association Name="Project_Task" Member="Project" ThisKey="ProjectId" OtherKey="Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TasksStatus_Task" Member="TasksStatus" ThisKey="TaskStatusId" OtherKey="Id" Type="TasksStatus" IsForeignKey="true" />
+      <Association Name="User_Task" Member="User" ThisKey="ExecutorUserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Task1" Member="User1" ThisKey="CreatorUserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TasksArchive" Member="TasksArchives" AccessModifier="Internal">
+    <Type Name="TasksArchive" AccessModifier="Internal">
+      <Column Name="ArchiveId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="StatusChangeDateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="PlanningTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ColorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ColorHEX" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ColorName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ColorPosition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExecutorUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExecutorNick" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExecutorEmail" Type="System.String" DbType="NVarChar(320) NOT NULL" CanBeNull="false" />
+      <Association Name="Board_TasksArchive" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" />
+      <Association Name="BoardsColor_TasksArchive" Member="BoardsColor" ThisKey="ColorId" OtherKey="Id" Type="BoardsColor" IsForeignKey="true" />
+      <Association Name="Project_TasksArchive" Member="Project" ThisKey="ProjectId" OtherKey="Id" Type="Project" IsForeignKey="true" />
+      <Association Name="Task_TasksArchive" Member="Task" ThisKey="Id" OtherKey="Id" Type="Task" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_TasksArchive" Member="User" ThisKey="ExecutorUserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TasksComments" Member="TasksComments" AccessModifier="Internal">
+    <Type Name="TasksComment" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AuthorUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AuthorUser" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentComment" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDate" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Task_TasksComment" Member="Task" ThisKey="TaskId" OtherKey="Id" Type="Task" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_TasksComment" Member="User" ThisKey="AuthorUserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TasksStatuses" Member="TasksStatus" AccessModifier="Internal">
+    <Type Name="TasksStatus" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BoardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NeedTimeCounting" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MaxTaskCountPerUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsBacklog" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PlanningRequired" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MaxPlanningTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TasksStatus_Task" Member="Tasks" ThisKey="Id" OtherKey="TaskStatusId" Type="Task" />
+      <Association Name="Board_TasksStatus" Member="Board" ThisKey="BoardId" OtherKey="Id" Type="Board" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users" AccessModifier="Internal">
+    <Type Name="User" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nick" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EMail" Type="System.String" DbType="NVarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationDate" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="TimeZone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsAdmin" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ConfimKey" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RecievOwnEvents" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="NVarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailChangeDate" Storage="_EmailConfirmDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
+      <Association Name="User_UsersInvite" Member="UsersInvites" ThisKey="Id" OtherKey="UserId" Type="UsersInvite" />
+      <Association Name="User_BoardsUser" Member="BoardsUsers" ThisKey="Id" OtherKey="UserId" Type="BoardsUser" />
+      <Association Name="User_OrganizationUser" Member="OrganizationUsers" ThisKey="Id" OtherKey="UserId" Type="OrganizationUser" />
+      <Association Name="User_ProjectsUser" Member="ProjectsUsers" ThisKey="Id" OtherKey="UserId" Type="ProjectsUser" />
+      <Association Name="User_Task" Member="Tasks" ThisKey="Id" OtherKey="ExecutorUserId" Type="Task" />
+      <Association Name="User_Task1" Member="Tasks1" ThisKey="Id" OtherKey="CreatorUserId" Type="Task" />
+      <Association Name="User_TasksArchive" Member="TasksArchives" ThisKey="Id" OtherKey="ExecutorUserId" Type="TasksArchive" />
+      <Association Name="User_TasksComment" Member="TasksComments" ThisKey="Id" OtherKey="AuthorUserId" Type="TasksComment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Texts" Member="Texts" AccessModifier="Internal">
+    <Type Name="Text" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDateTime" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Column Name="IsVisible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ReassignTasks" Method="ReassignTasks" AccessModifier="Internal">
+    <Parameter Name="boardId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fromUserId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="toUserId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

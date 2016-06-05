@@ -1,0 +1,88 @@
+﻿@model IEnumerable<IBoardsColor>
+<table class="table" id="ColorsTable">
+	<thead>
+		<tr>
+			<th class="button">
+			</th>
+			<th class="button">
+			</th>
+			<th style="text-align: left;">
+				Название
+			</th>
+			<th class="button">
+			</th>
+			<th class="button">
+			</th>
+			<th title="Удалить" class="button">
+			</th>
+		</tr>
+	</thead>
+	@foreach (var item in Model)
+ {
+	 string id = "color_" + item.Id.ToString();
+		<tr id="@id">
+			<td>
+				<div class="colorSelector">
+					<div style="background-color: @Html.Raw(item.Color)">
+					</div>
+				</div>
+			</td>
+			<td title="Использовать по умолчанию">
+				@Html.RadioButton("IsDefault", item.Id, item.IsDefault, new { disabled = "disabled" })
+			</td>
+			<td style="text-align: left;">
+				@item.Name
+			</td>
+			<td class="dragHandle">
+			</td>
+			<td>
+				<button type="button" class="color-edit circle-button" value="≡" board-id="@item.BoardId" color-id="@item.Id"  >
+					<span class="ui-icon ui-icon-wrench"></span>
+				</button>
+			</td>
+			<td>
+				<span class="circle-button">
+					@Ajax.ActionLink("X", "DeleteColor", "Boards",
+					   new { id = item.Id, boardId = item.BoardId },
+					   new CommonAjaxOptions("ColorTab"),
+								 new { @class = "ui-icon ui-icon-trash red delete-color", isDefault = item.IsDefault })</span>
+			</td>
+		</tr>
+ }
+</table>
+<div class="buttons">
+	<input type="button" class="color-edit"  value="Добавить новый приоритет" board-id="@ViewContext.GetCurrentBoardId()"/>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".delete-color").click(function(){
+            var isDefault = $(this).attr("isDefault");
+            if (isDefault == "True") {
+                alert("Нельзя удалять приоритет поумолчанию.");
+                return false;
+            }
+            return window.confirm("Вы уверены что хотите удалить приоритет?\nВсем задачам с этим приоритетом будет назначен приоритет по умолчанию.");
+        });
+
+         $(".color-edit").click(function () {
+            var button = $(this);
+            var data = {
+                boardId: button.attr("board-id"),
+                id: button.attr("color-id")
+            };
+            Main.LoadDialog("Редактирование приоритета", '@Url.Action("EditColor", "Boards")', data, true, {width:380});
+        });
+
+        // Сортировка статусов
+        $("#ColorsTable tbody").tableDnD({
+            onDrop: function (sender, row) {
+                var order = $(sender).tableDnDSerialize();
+                AjaxLoader.Show();
+                $.post('@Url.Action("EditColorList", "Boards")', { id: @ViewContext.GetCurrentBoardId(), ColorsOrder: order }, function(){
+                    AjaxLoader.Dispose();
+                });
+            },
+            dragHandle: "dragHandle"
+        });
+    });
+</script>

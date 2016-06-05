@@ -1,0 +1,72 @@
+﻿@model IEnumerable<IProject>
+@if (Model != null && Model.Any())
+{
+	<table class="table">
+		<tr>
+			<th style="text-align: left;">
+				Название
+			</th>
+			<th class="button">
+			</th>
+			<th class="button">
+			</th>
+		</tr>
+		@foreach (var item in Model)
+  {
+			<tr>
+				<td style="text-align: left;">
+					@item.Name
+				</td>
+				<td>
+					<button type="button" class="project-edit circle-button" value="≡" board-id="@item.BoardId" proj-id="@item.Id">
+						<span class="ui-icon ui-icon-wrench"></span>
+					</button>
+				</td>
+				<td>
+					<span class="circle-button">
+						@Ajax.ActionLink("X", "Delete",
+							new { id = item.Id, boardId = item.BoardId },
+							new CommonAjaxOptions("BoardsProjects") { Confirm = "Вы уверены что хотите удалить проект?\nБудут удалены все связанные задачи." },
+							new { @class = "ui-icon ui-icon-trash red square" })</span>
+				</td>
+			</tr>
+  }
+	</table>
+} // if
+else
+{
+	Response.Write("<p><i>Проектов нет</i></p>");
+}
+@{
+	int? count = ViewData.Get<int?>("AvailableProjectsCount");
+	if (!count.HasValue || count.Value > 0)
+	{
+	<div class="buttons">
+		@if (count.HasValue)
+  {
+			<span class="left">Проектов можно создать: <b>@count.Value</b></span>
+  }
+		<input type="button" class="project-edit" value="Создать новый проект" board-id="@ViewContext.GetCurrentBoardId()" />
+	</div>
+	}
+	else
+	{ 
+	<p>
+		Вы больше не можете создавать проекты на этой доске.<br />
+		Если вам требуется больше проектов, перейдите на другой тариф.
+	</p>
+	}
+}
+<script type="text/javascript">
+	$(function () {
+		$(".project-edit").click(function () {
+			var button = $(this);
+			var data = {
+				boardId: button.attr("board-id"),
+				id: button.attr("proj-id")
+			};
+			Main.LoadDialog(data.id ? "Редактирование проекта" : "Создание проекта", '@Url.Action("Edit", "Projects")', data, true);
+		});
+	});
+</script>
+@Html.Partial("ValidationSummary")

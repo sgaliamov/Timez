@@ -1,0 +1,79 @@
+﻿@model IEnumerable<UserSettings>
+<table class="table">
+	<tr>
+		<th style="text-align: left;">
+			Пользователь доски
+		</th>
+		<th class="button">
+		</th>
+		<th class="button">
+		</th>
+	</tr>
+	@if (Model != null && Model.Count() > 0)
+ {
+	 foreach (var item in Model)
+	 {
+		<tr>
+			<td style="text-align: left; @Html.Raw(item.Settings.IsActive ? "" : "color: Tomato;")">
+				@item.User.Nick
+			</td>
+			<td>
+				<button type="button" class="participant-edit circle-button" value="≡" participant-id="@item.User.Id" >
+					<span class="ui-icon ui-icon-wrench"></span>
+				</button>
+			</td>
+			<td style="text-align: right;">
+				<button type="button" class="participant-tasks circle-button" participant-id="@item.User.Id" title="Переназначение задач на другого пользователя" >
+					<span class="ui-icon ui-icon-transferthick-e-w"></span>
+				</button>
+			</td>
+		</tr>
+	 }
+ }
+</table>
+@{
+	var employees = ViewData.Get<List<EmployeeSettings>>("employees");
+	if (employees != null && employees.Count > 0)
+	{
+	<h2>
+		Другие сотрудники огранизации "@Html.Raw(ViewData.Get<IOrganization>("organization").Name)"</h2>
+	<table class="table">
+		<tr>
+			<th style="text-align: left;">
+				Пользователь
+			</th>
+			<th class="button">
+			</th>
+		</tr>
+		@foreach (var item in employees)
+  {
+			<tr>
+				<td style="text-align: left; @Html.Raw(item.Settings.IsApproved ? "" : "color: gray;")">
+					@item.User.Nick
+				</td>
+				<td>
+					<span class="circle-button">
+						@Ajax.ActionLink("+", "Add",
+					   new { boardId = ViewContext.GetCurrentBoardId(), id = item.User.Id },
+					   new CommonAjaxOptions("ParticipantsList"),
+								  new { @class = "ui-icon ui-icon-plus", title = "Добавить на доску" })</span>
+				</td>
+			</tr>
+  }
+	</table>
+	}
+}
+<script type="text/javascript">
+    $(function () {
+        $(".participant-edit").click(function () {
+            var data = { id: $(this).attr("participant-id"), boardId: @ViewContext.GetCurrentBoardId() };
+            Main.LoadDialog("Пользователь", '@Url.Action("Edit", "Participant")', data, true);
+        });
+
+        $(".participant-tasks").click(function () {
+            var data = { id: $(this).attr("participant-id"), boardId: @ViewContext.GetCurrentBoardId() };
+            Main.LoadDialog("Переназначение задач пользователя", '@Url.Action("Tasks", "Participant")', data, true);
+        });
+    });
+</script>
+@Html.Partial("ValidationSummary")

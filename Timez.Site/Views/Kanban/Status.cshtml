@@ -1,0 +1,67 @@
+﻿@*Колонка со статусом
+с кнопками и заголовком*@
+@using System.Globalization
+@using Common.Extentions;
+@using Timez.Helpers;
+@using Timez.Entities;
+@model ITasksStatus
+@{
+	// Все задачи статуса
+	IEnumerable<ITask> tasks = ViewData
+		.GetCollection<ITask>("Tasks")
+		.Where(t => t.TaskStatusId == Model.Id)
+		.ToList();
+
+	// Отображение свернутости/развернутости
+	var collapsedStatuses = ViewData.GetCollection<int>("CollapsedStatuses");
+	bool isCollapsed = collapsedStatuses != null && collapsedStatuses.Contains(Model.Id);
+	string statusClass = isCollapsed ? "hidden collapsed" : "status";
+	string collapsedStyle = isCollapsed ? "style='display:block;'" : "";
+	string width = ViewData.Get<float>("StatusWidth").ToString("0.00").Replace(',', '.');
+	string style = "style='width:" + width + "px;'";
+	string id = "status_" + Model.Id.ToString();
+	bool canCreate = ViewContext.GetUserRole().HasAnyFlag(UserRole.Customer | UserRole.Executor);
+    
+	<div class="@Html.Raw(statusClass)" id='@id' @Html.Raw(style)>
+		<div class="header">
+			<span class="name">
+				@Model.Name
+			</span>
+			<div class="over">
+			</div>
+			<div class="actions">
+				@if (canCreate)
+	{
+					<button class="circle-button" type="button" value="+" title="Создать задачу" onclick='Kanban.Popup.Create(@Model.BoardId, @Model.Id);'  >
+						<span class="ui-icon ui-icon-pencil"></span>
+					</button>
+	}
+				<button class="circle-button" type="button" value="?" title="Информация" onclick="Kanban.ShowInfo(@Model.BoardId, @Model.Id);" >
+					<span class="ui-icon ui-icon-help"></span>
+				</button>
+				<button class="circle-button" type="button" value="_" title="Свернуть" onclick="Kanban.Collapse(this);">
+					<span class="ui-icon ui-icon-folder-open"></span>
+				</button>
+			</div>
+		</div>
+		<div class="tasks">
+			@if (!isCollapsed)
+   {
+	   // пейджинг задач
+	   var page = ViewData.Get<int>("status-page-" + Model.Id.ToString(CultureInfo.InvariantCulture));
+	   var pagedTasks = new PagedTasks(page, tasks);
+
+	   Html.RenderPartial("StatusTasks", pagedTasks, ViewData);
+   }
+		</div>
+	</div>
+	<div class="collapsed-status" @Html.Raw(collapsedStyle)>
+		<button class="circle-button" type="button" value="□" title="Развернуть" onclick="Kanban.ShowStatus(this);">
+			<span class="ui-icon ui-icon-folder-collapsed"></span>
+		</button>
+		<br />
+		<span class="name">
+			@Html.Raw(Model.Name.ToString(x => "<br/>" + x, ""))
+		</span>
+	</div>
+}

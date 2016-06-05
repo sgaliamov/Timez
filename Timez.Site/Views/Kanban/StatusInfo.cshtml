@@ -1,0 +1,33 @@
+﻿@using Common.Extentions;
+@using Timez.Helpers;
+@model StatusInfoData
+<div>
+    <p>
+        <b>Название:</b>
+        @Model.Status.Name
+    </p>
+    <p>
+        <b>Всего задач:</b>
+        @Model.TotalTasks
+    </p>
+    <div>
+        <b>Запланированно времени на: </b>
+        <table>
+            <tbody>
+                @{
+                    var groups = Model.PlanningTimes;
+                    foreach (var item in groups)
+                    { 
+                    <tr>
+                        <td>@item.Key:&nbsp;
+                        </td>
+                        <td>
+                            <i>@Html.GetTimeString(item.Value)</i>
+                        </td>
+                    </tr>
+                    }   
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model IBoardsColor
+<div class="board-settings" id="boards-color-@ViewData["Id"]">
+    @using (Ajax.BeginForm(new CommonAjaxOptions("ColorTab")))
+    {
+        <fieldset>
+            <p>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "focused" })
+            </p>
+            @if (Model != null)
+            {
+                <p>
+                    @Html.CheckBoxFor(m => m.IsDefault, Model.IsDefault ? new { disabled = "disabled" } : null)
+                    @Html.LabelFor(m => m.IsDefault)
+                </p>
+            }
+        </fieldset>
+        <div>
+            @Html.LabelFor(m => m.Color)
+            @Html.Hidden("Color", ViewData["Color"])
+        </div>
+        <div class="color-selector-white">
+        </div>
+        <p class="tip">
+            выбор цвета подтвердите нажав на круглую кнопку</p>
+        <center>
+            <input type="submit" value="Сохранить" class="save-button" />
+            <input type="button" value="Отмена" class="close-button" />
+        </center>
+        @Html.ValidationSummary()        
+    }
+</div>
+<script>
+    $(function () {
+        var color = $("#Color");
+        $('.color-selector-white', '#boards-color-@ViewData["Id"]').ColorPicker({
+            color: '@ViewData["Color"]',
+            flat: true,
+            onSubmit: function (hsb, hex, rgb, colorSelector, cal) { color.val('#' + hex); }
+        });
+    })
+</script>

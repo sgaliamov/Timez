@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 24.375" name="Timez">
+  <DataContextMoniker Name="/TimezDataContext" />
+  <nestedChildShapes>
+    <classShape Id="11327e6f-bba7-4df8-9e54-e3473695d92f" absoluteBounds="0.75, 13.5, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/TimezDataContext/Board" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a8991f25-1c0e-425e-910d-d34413556fbe" absoluteBounds="0.76500000000000012, 13.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1a934321-0bc1-4829-a832-e17cb71400a5" absoluteBounds="3.5, 22.375, 2, 1.7708968091756105">
+      <DataClassMoniker Name="/TimezDataContext/UsersInvite" />
+      <nestedChildShapes>
+        <elementListCompartment Id="131db8e0-f767-45e8-b847-5d85b518105e" absoluteBounds="3.5150000005960464, 22.83500000089407, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="35dcc1d3-189e-464e-a609-45e697e3e5af" absoluteBounds="3.75, 19.125, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/TimezDataContext/BoardsColor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="452e674d-8a82-4133-92c2-fe842631d41a" absoluteBounds="3.765, 19.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6d36b644-c479-482f-8c90-2ddc9a6bc69b" absoluteBounds="3.5, 12.625, 2, 1.5785953775048256">
+      <DataClassMoniker Name="/TimezDataContext/BoardsUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="12425c22-9b21-40f3-a4a2-7580b3531420" absoluteBounds="3.5150000005960464, 13.08500000089407, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3335f750-fa57-4d7b-80d0-a47c34d15397" absoluteBounds="4.75, 0.75, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/TimezDataContext/EventHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="54a1beeb-9b6e-4455-bffa-9cf862e8594f" absoluteBounds="4.7650000000000006, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2f357602-55fb-41bd-898d-afd5c1c35572" absoluteBounds="0.75, 5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/TimezDataContext/Organization" />
+      <nestedChildShapes>
+        <elementListCompartment Id="74109912-eef7-44ec-92ce-468d65c97c9c" absoluteBounds="0.76500000000000012, 5.4600000000000009, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c2adbd83-bd90-40b4-a67b-0c9ba3e25dce" absoluteBounds="3.5, 6.5, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/TimezDataContext/OrganizationUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="389da1e3-5f9b-435e-8756-6e6a4472334f" absoluteBounds="3.5149999999999997, 6.9600000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2f2dd1e1-7867-4fb9-86a4-901a73459831" absoluteBounds="0.75, 16, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/TimezDataContext/Project" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86218cff-61a9-41f1-88c6-19cf64a1552e" absoluteBounds="0.76500000000000012, 16.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="87b29542-13f9-4440-b08d-6a1c941032f5" absoluteBounds="3.5, 9.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TimezDataContext/ProjectsUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1fb031e-2307-4397-9acd-671b34b7523b" absoluteBounds="3.5150000000000006, 10.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9ff3edd8-24e8-4089-8e0c-a94cc87740aa" absoluteBounds="1.5, 1.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/TimezDataContext/Tariff" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6114fd80-203c-4fb9-9901-4560542c0293" absoluteBounds="1.5150000000000001, 1.8350000000000009, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc7b7c67-451e-4650-b402-be3607abeadd" absoluteBounds="6.5, 8, 2, 4.8477197270840406">
+      <DataClassMoniker Name="/TimezDataContext/Task" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e7e680f-1735-40cc-9134-b669bf9d20f9" absoluteBounds="6.5150000005960464, 8.46000000089407, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="542d7193-d347-4e81-8d1c-fa034f66479f" absoluteBounds="12.25, 8.25, 2, 4.2708154302090406">
+      <DataClassMoniker Name="/TimezDataContext/TasksArchive" />
+      <nestedChildShapes>
+        <elementListCompartment Id="88d2bdcc-dd4b-487b-aa79-601ed9a3c0b6" absoluteBounds="12.265000000596046, 8.71000000089407, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fa336136-fd1b-4da1-9fce-59422b5c147c" absoluteBounds="9.25, 9, 2, 2.7324039712548256">
+      <DataClassMoniker Name="/TimezDataContext/TasksComment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d2fd3fe-2bad-4143-a0ef-3a0b3e4e1780" absoluteBounds="9.2650000005960464, 9.46000000089407, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="820f73cd-0648-495c-a5bd-b5f50825539d" absoluteBounds="3.75, 15.75, 2, 2.5401025390625023">
+      <DataClassMoniker Name="/TimezDataContext/TasksStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb30b4ff-0e54-41dc-8807-9d16aaf21ca5" absoluteBounds="3.765, 16.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 15.2708968098958); (3.125 : 15.6458968098958); (3.125 : 20.1065991210938); (3.26041666666667 : 20.1065991210938 : JumpStart); (3.42708333333333 : 20.1065991210938 : JumpEnd); (3.75 : 20.1065991210938)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_BoardsColor" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="35dcc1d3-189e-464e-a609-45e697e3e5af" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.8517976887524); (3.10416666666667 : 13.8517976887524 : JumpStart); (3.27083333333333 : 13.8517976887524 : JumpEnd); (3.5 : 13.8517976887524)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_BoardsUser" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="6d36b644-c479-482f-8c90-2ddc9a6bc69b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.73240397135417); (3.125 : 8.10740397135417); (3.125 : 13.0963932053786); (2.72139320537861 : 13.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Organization/Organization_Board" />
+      <nodes>
+        <classShapeMoniker Id="2f357602-55fb-41bd-898d-afd5c1c35572" />
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.08494948567708); (3.5 : 7.08494948567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Organization/Organization_OrganizationUser" />
+      <nodes>
+        <classShapeMoniker Id="2f357602-55fb-41bd-898d-afd5c1c35572" />
+        <classShapeMoniker Id="c2adbd83-bd90-40b4-a67b-0c9ba3e25dce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.7187475 : 15.2708968098958); (1.7187475 : 16)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_Project" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="2f2dd1e1-7867-4fb9-86a4-901a73459831" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.5612992741887); (3.12857443490112 : 13.1827248392876 : JumpStart); (3.24642556509888 : 13.0648737090898 : JumpEnd); (3.28125 : 13.0300492741887); (3.28125 : 10.4142976888021); (3.5 : 10.4142976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_ProjectsUser" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="87b29542-13f9-4440-b08d-6a1c941032f5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 16.0618490375601); (3.1875 : 15.6243490375601); (3.1875 : 10.8401985332031); (3.5 : 10.8401985332031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Project/Project_ProjectsUser" />
+      <nodes>
+        <classShapeMoniker Id="2f2dd1e1-7867-4fb9-86a4-901a73459831" />
+        <classShapeMoniker Id="87b29542-13f9-4440-b08d-6a1c941032f5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.125 : 3.53049967447917); (2.125 : 5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Tariff/Tariff_Organization" />
+      <nodes>
+        <classShapeMoniker Id="9ff3edd8-24e8-4089-8e0c-a94cc87740aa" />
+        <classShapeMoniker Id="2f357602-55fb-41bd-898d-afd5c1c35572" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 14.7372435937003); (3.10416666666667 : 14.7372435937003 : JumpStart); (3.27083333333333 : 14.7372435937003 : JumpEnd); (6.88541416666667 : 14.7372435937003 : JumpStart); (7.05208083333333 : 14.7372435937003 : JumpEnd); (7.5 : 14.7372435937003); (7.5 : 12.847719727084)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_Task" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 20.1065991210938); (6.9687475 : 20.1065991210938); (6.9687475 : 12.847719727084)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/BoardsColor/BoardsColor_Task" />
+      <nodes>
+        <classShapeMoniker Id="35dcc1d3-189e-464e-a609-45e697e3e5af" />
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 16.7553234914363); (3.5 : 16.7553234914363); (3.5 : 15.5); (3.54166666666667 : 15.5 : JumpStart); (3.70833333333333 : 15.5 : JumpEnd); (5.54166416666667 : 15.5 : JumpStart); (5.70833083333333 : 15.5 : JumpEnd); (6.88541416666667 : 15.5 : JumpStart); (7.05208083333333 : 15.5 : JumpEnd); (8.031252 : 15.5); (8.031252 : 12.847719727084)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Project/Project_Task" />
+      <nodes>
+        <classShapeMoniker Id="2f2dd1e1-7867-4fb9-86a4-901a73459831" />
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 14.4704169856026); (3.10416666666667 : 14.4704169856026 : JumpStart); (3.42708333333333 : 14.4704169856026 : JumpEnd); (5.57291666666667 : 14.4704169856026 : JumpStart); (5.73958333333333 : 14.4704169856026 : JumpEnd); (6.88541416666667 : 14.4704169856026 : JumpStart); (7.05208083333333 : 14.4704169856026 : JumpEnd); (7.41666666666667 : 14.4704169856026 : JumpStart); (7.58333333333333 : 14.4704169856026 : JumpEnd); (7.94791866666667 : 14.4704169856026 : JumpStart); (8.11458533333333 : 14.4704169856026 : JumpEnd); (12.6354141666667 : 14.4704169856026 : JumpStart); (12.8020808333333 : 14.4704169856026 : JumpEnd); (13.25 : 14.4704169856026); (13.25 : 12.520815430209)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_TasksArchive" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="542d7193-d347-4e81-8d1c-fa034f66479f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 19.5845470605469); (12.7187475 : 19.5845470605469); (12.7187475 : 12.520815430209)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/BoardsColor/BoardsColor_TasksArchive" />
+      <nodes>
+        <classShapeMoniker Id="35dcc1d3-189e-464e-a609-45e697e3e5af" />
+        <classShapeMoniker Id="542d7193-d347-4e81-8d1c-fa034f66479f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 16.4085862644982); (3.625 : 16.4085862644982); (3.625 : 15.25); (5.54166416666667 : 15.25 : JumpStart); (5.70833083333333 : 15.25 : JumpEnd); (12.6354141666667 : 15.25 : JumpStart); (12.8020808333333 : 15.25 : JumpEnd); (13.781252 : 15.25); (13.781252 : 12.520815430209)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Project/Project_TasksArchive" />
+      <nodes>
+        <classShapeMoniker Id="2f2dd1e1-7867-4fb9-86a4-901a73459831" />
+        <classShapeMoniker Id="542d7193-d347-4e81-8d1c-fa034f66479f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 12.1578597007319); (12.25 : 12.1578597007319)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Task/Task_TasksArchive" />
+      <nodes>
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+        <classShapeMoniker Id="542d7193-d347-4e81-8d1c-fa034f66479f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 10.3662019856274); (9.25 : 10.3662019856274)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Task/Task_TasksComment" />
+      <nodes>
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+        <classShapeMoniker Id="fa336136-fd1b-4da1-9fce-59422b5c147c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.65625 : 15.75); (5.65625 : 11.9142976888021); (6.5 : 11.9142976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/TasksStatus/TasksStatus_Task" />
+      <nodes>
+        <classShapeMoniker Id="820f73cd-0648-495c-a5bd-b5f50825539d" />
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 15.0248742968502); (3.10416666666667 : 15.0248742968502 : JumpStart); (3.27083333333333 : 15.0248742968502 : JumpEnd); (5.6249975 : 15.0248742968502); (5.6249975 : 15.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/Board/Board_TasksStatus" />
+      <nodes>
+        <classShapeMoniker Id="11327e6f-bba7-4df8-9e54-e3473695d92f" />
+        <classShapeMoniker Id="820f73cd-0648-495c-a5bd-b5f50825539d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" absoluteBounds="0.75, 8.75, 2, 3.3093082681298256">
+      <DataClassMoniker Name="/TimezDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="88ef2cff-ff76-4bda-b21a-a099acecfc1c" absoluteBounds="0.76500000059604645, 9.21000000089407, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.71769230769231 : 12.0593082681298); (3.12857443490112 : 12.4701903953386 : JumpStart); (3.34017556509888 : 12.6817915255364 : JumpEnd); (3.34375 : 12.6853659604375); (3.34375 : 23.2604484045878); (3.5 : 23.2604484045878)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_UsersInvite" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="1a934321-0bc1-4829-a832-e17cb71400a5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 11.9946918835144); (3.03125 : 12.2759418835144); (3.03125 : 12.15625); (3.12857443490112 : 12.2535744349011 : JumpStart); (3.34017556509888 : 12.4651755650989 : JumpEnd); (3.5 : 12.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_BoardsUser" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="6d36b644-c479-482f-8c90-2ddc9a6bc69b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 8.81307592307692); (3.3125 : 8.25057592307692); (3.3125 : 8.45975803821114); (3.5013612283153 : 8.27089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_OrganizationUser" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="c2adbd83-bd90-40b4-a67b-0c9ba3e25dce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.95714884440104); (2.91666666666667 : 9.95714884440104 : JumpStart); (3.08333333333333 : 9.95714884440104 : JumpEnd); (3.5 : 9.95714884440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_ProjectsUser" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="87b29542-13f9-4440-b08d-6a1c941032f5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.21904046153846); (6.5 : 9.21904046153846)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_Task" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 11.5276965332031); (3.10416666666667 : 11.5276965332031 : JumpStart); (3.36458333333333 : 11.5276965332031 : JumpEnd); (6.5 : 11.5276965332031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_Task1" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="fc7b7c67-451e-4650-b402-be3607abeadd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 10.4299261888021); (3 : 10.4299261888021); (3 : 9.375); (6.25 : 9.375); (6.25 : 7.75); (8.79166666666667 : 7.75 : JumpStart); (8.95833333333333 : 7.75 : JumpEnd); (13.25 : 7.75); (13.25 : 8.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_TasksArchive" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="542d7193-d347-4e81-8d1c-fa034f66479f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 8.75); (1.75 : 8.5); (6 : 8.5); (6 : 7.5); (8.875 : 7.5); (8.875 : 9.65184899281371); (9.25 : 9.65184899281371)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TimezDataContext/User/User_TasksComment" />
+      <nodes>
+        <classShapeMoniker Id="8e13e08e-4031-457b-914e-9a3d0855d8d0" />
+        <classShapeMoniker Id="fa336136-fd1b-4da1-9fce-59422b5c147c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="540650d4-5fc1-42cb-adf9-8d1607064697" absoluteBounds="8.125, 4, 2, 1.9631982421875">
+      <DataClassMoniker Name="/TimezDataContext/Text" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c6ed98b0-96e3-475a-8140-ac1c1b23aca6" absoluteBounds="8.14, 4.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
